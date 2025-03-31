@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script> <!-- JavaScript for interactivity -->
 </head>
 <body>
+
+    <!-- Navbar -->
     <header>
-        <h1>My Portfolio</h1>
         <nav>
+            <div class="logo">My Portfolio</div>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -17,26 +20,56 @@
             </ul>
         </nav>
     </header>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi, I'm [Your Name], a Unity Developer. Welcome to my portfolio!</p>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>I create games and digital experiences</p>
     </section>
-    
-    <section id="projects">
+
+    <!-- Highlighted About Section -->
+    <section id="about" class="section about-highlight">
+        <h2>About Me</h2>
+        <p>I'm a passionate Unity game developer with experience in C# and WebGL projects.</p>
+        <p>Check out my latest work below!</p>
+    </section>
+
+    <!-- Projects Section with Carousel -->
+    <section id="projects" class="section">
         <h2>Projects</h2>
-        <div class="project">
-            <h3>Game Title</h3>
-            <iframe src="https://yourname.itch.io/your-game" width="100%" height="400px"></iframe>
+        <div class="carousel">
+            <button class="prev" onclick="prevSlide()">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <div class="project-card">
+                        <h3>Game 1</h3>
+                        <iframe src="https://yourname.itch.io/game1" frameborder="0"></iframe>
+                    </div>
+                    <div class="project-card">
+                        <h3>Game 2</h3>
+                        <iframe src="https://yourname.itch.io/game2" frameborder="0"></iframe>
+                    </div>
+                    <div class="project-card">
+                        <h3>Game 3</h3>
+                        <iframe src="https://yourname.itch.io/game3" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </div>
+            <button class="next" onclick="nextSlide()">&#10095;</button>
         </div>
     </section>
-    
-    <section id="contact">
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+        <p>Email: your-email@example.com</p>
         <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
     </section>
-    
-    <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
