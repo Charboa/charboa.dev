@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('https://charboa.github.io/charboa.dev/data/projects.json')
+    fetch('./data/projects.json')
 
         .then(res => res.json())
         .then(data => {
