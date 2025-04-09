@@ -1,35 +1,76 @@
+.projects-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 50px;
+}
+
 .projects-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  perspective: 2500px;
+  gap: 30px; 
 }
 
 .project-card {
   display: flex;
   gap: 20px;
-  background: white;
+  background: #5547a8;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   padding: 20px;
   align-items: center;
+  transition: transform 0.05s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+  --shine-angle-x: 0deg; 
+  --shine-angle-y: 0deg; 
 }
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  transform: rotate(var(--shine-angle-x)) rotateY(var(--shine-angle-y)); /* Dynamically rotate with the card */
+  transform-origin: center center;  /* Ensure the shine rotates around the center */
+}
+
+/* On hover, the shine effect becomes visible */
+.project-card:hover::before {
+  opacity: 1; /* Show shine */
+}
+
 
 .project-image {
   width: 200px;
-  height: 120px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
 }
 
 .project-content {
   flex: 1;
+  text-align: end;
 }
 
 .project-content h2 {
-  margin: 0 0 10px 0;
+  text-align: end;
+  font-size: 24px;
+  margin: 0 0 24px 0;
 }
 
 .project-content a {
   color: #15f5ba;
   text-decoration: underline;
 }
+

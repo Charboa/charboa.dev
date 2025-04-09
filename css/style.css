@@ -113,7 +113,7 @@
   margin-bottom: 50px;
 }
 
-.page .hero .hero-title {
+.page .hero-title {
   font-family: "Inter", Helvetica;
   font-weight: 800;
   font-size: 48px;
@@ -184,7 +184,7 @@
 }
 
 .page .socials-button:hover {
-  background-color: lch(13.31% 39.53 303.08);
+  background-color: #211951;
   border-color: #15f5ba;
   transform: scale(1.05);
 }
@@ -203,7 +203,7 @@
   transition: color 0.3s ease;
 }
 
-.page .hero .text-wrapper-4 {
+.page .text-wrapper-4 {
   color: #15f5ba;
 }
 

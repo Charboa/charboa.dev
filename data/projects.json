@@ -2,25 +2,25 @@
   {
     "title": "Platformer Game",
     "description": "A Unity-based 2D platformer with custom physics and level design.",
-    "image": "./images/platformer.png",
+    "image": "./Resources/pp-stylized.png",
     "link": "https://github.com/charboa/platformer-game"
   },
   {
     "title": "Portfolio Website",
     "description": "This personal portfolio was built from a Figma design using HTML, CSS, and JavaScript.",
-    "image": "./images/portfolio-preview.png",
+    "image": "./Resources/pp-stylized.png",
     "link": "https://github.com/charboa/portfolio"
   },
   {
     "title": "Space Shooter",
     "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "./images/spaceshooter.png",
+    "image": "./Resources/pp-stylized.png",
     "link": "https://github.com/charboa/space-shooter"
   },
   {
     "title": "RNGI (Random Number Generator Interface)",
     "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "./images/spaceshooter.png",
+    "image": "./Resources/pp-stylized.png",
     "link": "https://github.com/charboa/space-shooter"
   }
 ]
