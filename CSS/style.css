@@ -1,77 +1,176 @@
-.desktop {
+.page {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   min-height: 100vh;
-  padding: 0px 0px;
 }
 
-.desktop .div {
-  width: 100%;
+.page .welcome-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center; 
+  width: 100%;
 }
 
-.desktop .navigation {
+.page header {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   background-color: #15f5ba;
-  padding: 20px 20px;
+  padding: 20px 0px;
   margin-bottom: 50px;
 }
 
-.desktop .navbar {
+.page footer {
   display: flex;
+  flex-direction: row;
   width: 100%;
-  max-width: 1200px;
+  height: 5vh;
+  background-color: #15f5ba;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
+  justify-content: center;
 }
 
-.desktop .text-wrapper {
-  font-family: "Inter", Helvetica;
-  font-weight: 800;
+.page .footer .span {
+  font-weight: 400;
   color: #211951;
-  font-size: 36px;
+  font-size: 18px;
   text-align: center;
 }
 
-.desktop .nav-links {
+.page .navigation {
   display: flex;
   flex-direction: row;
-  gap: 150px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.desktop .photo-container {
+.page .navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin: 0px 25px;
+  width: 100%; 
+}
+
+.page .nav-container {
+  position: relative;
+}
+
+.page .nav-links {
+  position: relative;
+  display: flex;
+  gap: 50px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.page .nav-links li {
+  margin: 0;
+}
+
+.page .nav-links a {
+  position: relative;
+  font-weight: 800;
+  color: #211951;
+  font-size: 36px;
+  text-decoration: none;
+  padding: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.page .nav-links a.active {
+  color: #F0F3FF;
+  font-weight: 1000;
+}
+
+.page .nav-links a:hover {
+  font-weight: 1000;
+  color: #F0F3FF;
+}
+
+.page .nav-indicator {
+  position: absolute;
+  height: 8px;
+  background-color: #F0F3FF;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  width: 0;
+  left: 0;
+  margin-top: 4px;
+}
+
+.page .hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.page .hero .hero-title {
+  font-family: "Inter", Helvetica;
+  font-weight: 800;
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin-bottom: 50px; 
+}
+
+.page .hero .span {
+  color: #F0F3FF;
+}
+
+.page .photo-container {
   width: 300px;
   height: 300px;
   border-radius: 50%;
   overflow: hidden;
   transition: all 0.3s ease;
   margin-bottom: 50px;
+  display: flex; 
+  align-items: center; 
 }
 
-.desktop .photo-container:hover {
+.page .photo-container:hover {
   transform: scale(1.05);
 }
 
-.desktop .photoshoot {
+.page .photoshoot {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.desktop .social-buttons {
+.page .socials-section {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 100px; 
+}
+
+.page .socials-title {
+  margin-bottom: 30px; 
+}
+
+.page .socials-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   gap: 20px;
   width: 100%;
   max-width: 768px;
 }
 
-.desktop .social-button {
+.page .socials-button {
   width: 100%;
   height: 80px;
   background-color: #15f5ba;
@@ -84,79 +183,71 @@
   border: 2px solid #15f5ba;
 }
 
-.desktop .social-button:hover {
-  background-color: #211951;
+.page .socials-button:hover {
+  background-color: lch(13.31% 39.53 303.08);
   border-color: #15f5ba;
   transform: scale(1.05);
 }
 
-.desktop .text-wrapper-2 {
-  font-family: "Inter", Helvetica;
+.page .text-wrapper {
+  font-weight: 800;
+  color: #211951;
+  font-size: 36px;
+}
+
+.page .text-wrapper-2 {
   font-weight: 700;
   color: #211951;
   font-size: 24px;
   text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
   transition: color 0.3s ease;
 }
 
-.desktop .social-button:hover .text-wrapper-2 {
+.page .hero .text-wrapper-4 {
   color: #15f5ba;
 }
 
-.desktop .hero-title {
-  font-family: "Inter", Helvetica;
-  font-weight: 800;
-  color: transparent;
-  font-size: 48px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: 1.2;
-  margin-bottom: 50px;
-}
-
-.desktop .span {
-  color: #F0F3FF;
-}
-
-.desktop .text-wrapper-4 {
+.page .socials-button:hover .text-wrapper-2 {
   color: #15f5ba;
 }
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
-  .desktop .navbar {
+
+  .page .navbar {
     flex-direction: column;
     gap: 20px;
   }
 
-  .desktop .nav-links {
-    flex-direction: column;
+  .page .nav-links {
+    flex-direction: row;
     align-items: center;
   }
 
-  .desktop .text-wrapper {
+  .page .hero-title {
     font-size: 28px;
   }
 
-  .desktop .hero-title {
-    font-size: 28px;
-  }
-
-  .desktop .photo-container {
+  .page .photo-container {
     width: 250px;
     height: 250px;
   }
 
-  .desktop .social-buttons {
-    max-width: none;    
-    width: calc(100% - 40px); 
+  .page .socials-buttons {
+    max-width: none;
+    width: calc(100% - 40px);
     margin: 0 auto;
   }
 
-  .desktop .social-button {
-    height : 60px;
-    width: 100%;
+  .page .socials-button {
+    height: 60px;
+  }
+
+  .page .text-wrapper {
+    font-size: 28px;
+  }
+
+  .page .nav-links a {
+    font-size: 20px;
   }
 }

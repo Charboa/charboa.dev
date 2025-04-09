@@ -1,40 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./CSS/globals.css" />
-    <link rel="stylesheet" href="./CSS/style.css" />
-  </head>
-  <body>
-    <div class="desktop">
-      <div class="div">
-        <div class="navigation">
-          <div class="navbar">
-            <div class="text-wrapper">charboa.dev</div>
-          </div>
-        </div>
-        <p class="hero-title">
-          <span class="span">Hi, this is Charboa.<br />I create</span> <span class="text-wrapper-4">video games.</span>
-        </p>
-        <div class="photo-container">
-          <img class="photoshoot" src="./Resources/pp-stylized.png" alt="Stylized image of Charboa."/>
-        </div>
-         <P class="hero-title">
-             <span class="span">Find me here:</span>
-         </P>
-        <div class="social-buttons">
-          <a href="https://github.com/charboa" target="_blank" rel="noopener noreferrer" class="social-button github">
-            <span class="text-wrapper-2">github</span>
-          </a>
-          <a href="https://www.linkedin.com/in/charboa" target="_blank" rel="noopener noreferrer" class="social-button linkedin">
-            <span class="text-wrapper-2">linkedin</span>
-          </a>
-          <a href="https://www.youtube.com/@charboa" target="_blank" rel="noopener noreferrer" class="social-button youtube">
-            <span class="text-wrapper-2">youtube</span>
-          </a>
-        </div>
-      </div>
+    <link rel="stylesheet" href="./css/globals.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>charboa.dev</title> 
+</head>
+<body>
+    <div class="page">
+        
+        <!-- Header -->
+        <header class="navigation">
+            <div class="navbar">
+              <div class="text-wrapper">charboa.dev</div>
+              <nav class="nav-container">
+                <ul class="nav-links">
+                  <li><a href="index.html" class="active">about</a></li>
+                  <li><a href="projects.html">code</a></li>
+                  <li><a href="contact.html">contact</a></li>
+                </ul>
+                <div class="nav-indicator"></div>
+              </nav>
+            </div>
+          </header>
+        
+        <!-- Welcome Content -->
+        <main class="welcome-content">       
+            <section class="hero">
+                <p class="hero-title">
+                    <span class="span">Hi, this is Charboa.<br />I create</span>
+                    <span class="text-wrapper-4">video games.</span>
+                </p>
+                <div class="photo-container">
+                    <img class="photoshoot" src="./Resources/pp-stylized.png" alt="Stylized image of Charboa." />
+                </div>
+            </section>
+
+            <section class="socials-section">
+                <p class="socials-title">
+                    <span class="span">Find me here:</span>
+                </p>
+                <div class="socials-buttons">
+                    <a href="https://github.com/charboa" target="_blank" rel="noopener noreferrer" class="socials-button github">
+                        <span class="text-wrapper-2">github</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/charboa" target="_blank" rel="noopener noreferrer" class="socials-button linkedin">
+                        <span class="text-wrapper-2">linkedin</span>
+                    </a>
+                    <a href="https://www.youtube.com/@charboa" target="_blank" rel="noopener noreferrer" class="socials-button youtube">
+                        <span class="text-wrapper-2">youtube</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="span">&copy; 2025 Charboa. All rights reserved.</p>
+        </footer>
+        
     </div>
-  </body>
+        
+    <script src="./js/navbar-indicator.js"></script>
+</body>
 </html>
