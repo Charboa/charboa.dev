@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch('./data/projects.json')
+    fetch('https://charboa.github.io/charboa.dev/data/projects.json')
+
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('project-list');
