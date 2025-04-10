@@ -1,0 +1,18 @@
+
+   canvas {
+    background: #000;
+    box-shadow: 0 0 20px #0ff;
+    border: 2px solid #0ff;
+    margin: auto;
+    display: block;
+  }
+  
+  /* Mobile-specific styles */
+  @media (max-width: 768px) {
+  
+    canvas {
+      width: 100%;    /* Make canvas full width on smaller screens */
+      height: auto;   /* Maintain aspect ratio */
+    }
+  }
+  

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/projects.css" />
+    <link rel="stylesheet" href="./css/pong.css" />
     <link rel="stylesheet" href="./css/loader.css" />
     <title>Projects</title>   
 </head>
@@ -24,23 +24,16 @@
               <nav class="nav-container">
                 <ul class="nav-links">
                   <li><a href="index.html">about</a></li>
-                  <li><a href="projects.html" class="active">code</a></li>
-                  <li><a href="contact.html">contact</a></li>
+                  <li><a href="projects.html">code</a></li>
+                  <li><a href="contact.html" class="active">contact</a></li>
                 </ul>
                 <div class="nav-indicator"></div>
               </nav>
             </div>
           </header>
-
-        <!-- Projects Content -->
-        <main class = "projects-section">
-            <p class="hero-title">
-              <span class="span">Ready to use.<br/>for</span>
-              <span class="text-wrapper-4">developers</span>
-            </p>
-            <div id="project-list" class="projects-container"></div>
-        </main>
-
+         
+        <!--Contact game-->  
+        <canvas id="pong" width="600" height="400"></canvas>
         
         <!-- Footer -->
         <footer class="footer">
@@ -48,11 +41,10 @@
             </footer>
             
         </div>
-        
-    <script src="./js/script.js"></script>    
+
+    <script src="./js/script.js"></script>       
     <script src="./js/navbar-indicator.js"></script>
-    <script src="./js/projects.js"></script>
-    <script src="./js/card-tilt.js"></script>
+    <script src="./js/pong.js"></script>
 
 </body>
 </html>
