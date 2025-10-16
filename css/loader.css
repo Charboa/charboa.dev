@@ -1,7 +1,7 @@
 .page-loader {
     position: fixed;
     inset: 0;
-    background-color: #211951; 
+    background-color: var(--color-secondary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +17,7 @@
   .spinner {
     width: 60px;
     height: 60px;
-    border: 6px solid #15f5ba;
+    border: 6px solid var(--color-primary);
     border-top: 6px solid transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -28,4 +28,7 @@
       transform: rotate(360deg);
     }
   }
+
+
+
   

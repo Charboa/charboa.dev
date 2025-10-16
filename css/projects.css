@@ -16,9 +16,9 @@
 .project-card {
   display: flex;
   gap: 20px;
-  background: #5547a8;
+  background: var(--color-surface);
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 12px var(--color-primary);
   padding: 20px;
   align-items: center;
   transition: transform 0.05s ease, box-shadow 0.1s ease;
@@ -26,6 +26,10 @@
   will-change: transform, box-shadow;
   position: relative;
   overflow: hidden;
+}
+
+.project-card:hover  {
+  box-shadow: 0 0 24px var(--color-accent);
 }
 
 .project-card::before {
@@ -66,7 +70,7 @@
 }
 
 .project-content a {
-  color: #15f5ba;
+  color: var(--color-primary);
   text-decoration: underline;
 }
 

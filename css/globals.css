@@ -1,12 +1,33 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-@import url("https://fonts.googleapis.com/css?family=Inter:700,800");
+@import url('https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&family=Zen+Dots&display=swap');
 
 * {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
 
-/* Make sure the body and html take full height */
+:root {
+  --color-primary: #00E893;
+  --color-secondary: #00BB77;
+  --color-accent: #04471c;
+
+  --color-bg: #000000;
+  --color-surface: #102c22;
+  --color-border: #cb2d6f;
+  --color-text: #cccccc;
+  --color-muted: #b0b0b0;
+
+  --color-success: #29d398;
+  --color-warning: #f7c948;
+  --color-error: #f44336;
+
+  --font-logo: "Zen Dots", sans-serif;
+  --font-header: "Special Gothic Expanded One", sans-serif;
+  --font-body : "Roboto", sans-serif;
+  --font-monospace: "Courier New", monospace;
+}
+
+
 html, body {
     margin: 0;
     padding: 0;
@@ -17,35 +38,20 @@ html, body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: var(--color-text);
     font-family: 'Inter', sans-serif;
-    
-    background-image: radial-gradient(#836fff 2px, transparent 2px);
-    background-size: 83px 83px;
-    background-color: #211951;
+    background-color: var(--color-bg);
 }
 
-/* Fix the animation */
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Fix button focus styles */
-button:focus-visible {
-  outline: 2px solid #4a90e2 !important;
-}
-
-/* Ensure links look good */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Center content */
 .content {
     position: relative;
     z-index: 1;
 }
+
+
 

@@ -4,3 +4,5 @@ window.addEventListener("load", () => {
     loader.classList.add("hidden");
   }
 });
+
+
