@@ -1,9 +1,9 @@
 const cacheName = "charboadev-Flappyscape-1.4";
 const contentToCache = [
-    "Build/Flappyscape WEBGL Build.loader.js",
-    "Build/Flappyscape WEBGL Build.framework.js.br",
-    "Build/Flappyscape WEBGL Build.data.br",
-    "Build/Flappyscape WEBGL Build.wasm.br",
+    "Build/Flappyscape.loader.js",
+    "Build/Flappyscape.framework.js",
+    "Build/Flappyscape.data",
+    "Build/Flappyscape.wasm",
     "TemplateData/style.css"
 
 ];
