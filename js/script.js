@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 // Function to load the latest video
 async function loadLatestVideo() {
     try {
-        const response = await fetch("https://latest-youtube-short-abcdef-ew.a.run.app");
+        const response = await fetch("https://latest-youtube-video-367191311759.europe-west1.run.app");
         const data = await response.json();
         const videoId = data.videoId;
 
