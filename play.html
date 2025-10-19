@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/globals.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/games.css" />
     <link rel="stylesheet" href="./css/loader.css" />
     <title>Projects</title>   
 </head>
@@ -16,43 +17,41 @@
             <div class="spinner"></div>
         </div>
 
-        <!-- Header -->
-        <header class="navigation">
-            <div class="navbar">
-              <div class="text-wrapper">charboa.dev</div>
-              <nav class="nav-container">
-                <ul class="nav-links">
-                  <li><a href="index.html">about</a></li>
-                  <li><a href="play.html" class="active">play</a></li>
-                  <li><a href="projects.html">code</a></li>
-                  <li><a href="contact.html" >contact</a></li>
-                </ul>
-                <div class="nav-indicator"></div>
-              </nav>
-            </div>
-          </header>
-         
-       
-          <div class="iframe-container">
-            <iframe
-              src="/games/Flappyscape/index.html"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
+      <!-- Header -->
+      <header class="navigation">
+          <div class="navbar">
+            <div class="text-wrapper">charboa.dev</div>
+            <nav class="nav-container">
+              <ul class="nav-links">
+                <li><a href="index.html">about</a></li>
+                <li><a href="play.html" class="active">play</a></li>
+                <li><a href="projects.html">code</a></li>
+                <li><a href="contact.html">contact</a></li>
+              </ul>
+            </nav>
           </div>
+        </header>
 
+      <!-- Games Content -->
+      <main class = "games-section">
+          <p class="hero-title">
+            <span class="span">Play my<br/>demo</span>
+            <span class="text-wrapper-4">games</span>
+          </p>
+          <div id="games-list" class="games-container"></div>
+      </main>
 
-
-        <!-- Footer -->
-        <footer class="footer">
-            <span class="span">&copy; 2025 Charboa. All rights reserved.</p>
-            </footer>
-            
-        </div>
-
-    <script src="./js/script.js"></script>       
-    <script src="./js/navbar-indicator.js"></script>
-    <script src="./js/pong.js"></script>
+      
+      <!-- Footer -->
+      <footer class="footer">
+          <span class="span">&copy; 2025 Charboa. All rights reserved.</p>
+          </footer>
+          
+      </div>
+        
+    <script src="./js/script.js"></script>    
+    <script src="./js/games.js"></script>
+    <script src="./js/card-tilt.js"></script>
 
 </body>
 </html>
