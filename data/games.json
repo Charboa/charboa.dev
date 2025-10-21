@@ -2,8 +2,7 @@
   {
     "title": "Flappyscape",
     "description": "Control a giant laser beam to destroy drones. Help flappy on its escape!",
-    "image": "./Resources/flappyscapeCover.png",
-    "link": "https://github.com/charboa/platformer-game"
+    "image": "/resources/flappyscapeCover.png",
+    "link": "/play"
   }
-  
 ]

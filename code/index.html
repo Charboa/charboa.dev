@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/paginatedList.css" />
+    <link rel="stylesheet" href="/css/loader.css" />
+    <title>charboa.dev/code</title>   
+</head>
+<body>
+    <div class="page">
+
+      <!-- Loader -->
+        <div id="loader" class="page-loader">
+            <div class="spinner"></div>
+        </div>
+
+      <!-- Header -->
+      <header class="navigation">
+          <div class="navbar">
+            <a href="/" class="text-wrapper">charboa.dev</a>
+            <nav class="nav-container">
+              <ul class="nav-links">
+                <li><a href="/">home</a></li>
+                <li><a href="/play">play</a></li>
+                <li><a href="/code" class="active">code</a></li>
+                <li><a href="/contact">contact</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+
+      <!-- Projects Content -->
+      <main class = "main-content">
+       
+            <p class="hero-title">
+              <span class="span">get my<br/>source</span>
+              <span class="text-wrapper-4">code</span>
+            </p>
+
+            <div class="paginatedList-section">
+              <script 
+                  src="/js/paginatedList.js"
+                  data-json="/data/projects.json"
+                  data-newtab="false"
+                  data-height="125px";
+                  data-items-per-page="14"
+                  data-show-description="true">
+              </script>          
+            </div>
+      </main>
+
+      
+      
+      <!-- Footer -->
+      <footer class="footer">
+          <span class="span">&copy; 2025 Charboa. All rights reserved.</p>
+          </footer>
+          
+      </div>
+        
+    <script src="/js/script.js"></script>    
+    <script src="/js/card-tilt.js"></script>
+
+</body>
+</html>

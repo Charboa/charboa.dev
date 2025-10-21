@@ -1,0 +1,149 @@
+.paginatedList-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 50px;
+}
+
+.paginatedList-container {
+  display: block;
+  flex-direction: column;
+  perspective: 2500px;
+}
+
+.paginatedList-element {
+  display: flex;
+  flex-direction: row ;
+  height: 125px;
+  background: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 0 12px var(--color-accent);
+  padding: 20px;
+  align-items: center;
+  transition: transform 0.01s ease, box-shadow 0.1s ease;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.paginatedList-element:hover  {
+  box-shadow: 0 0 24px var(--color-primary);
+}
+
+.paginatedList-element::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgb(134, 255, 136) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+  z-index: 1;
+}
+
+.paginatedList-element:hover::before {
+  opacity: 1; 
+}
+
+.paginatedList-element-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.paginatedList-element-content {
+  flex: 1;
+  text-align: end; 
+}
+
+.paginatedList-element-content h2 {
+  text-align: end;
+  font-size: 24px;
+  text-overflow: ellipsis;
+  margin: 0px 0px 20px 0px;
+  color: var(--color-primary);
+}
+
+.paginatedList-element-content p {
+  text-align: end;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  margin: 0px 0px 20px 50px;
+  color: var(--color-muted);
+}
+
+.paginatedList-element-content span {
+  text-align: end;
+  font-size: 16px;
+  text-decoration: underline;
+  text-overflow: ellipsis;
+  margin: 0px 0px 0px 0px;
+  color: var(--color-secondary);
+}
+
+.paginatedList-pagination-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin : 0px 0px 20px 0px;  
+  }
+
+  .paginatedList-pagination-controls button {
+    display: flex;
+    flex-direction: column;
+    background: var(--accent, #555);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .paginatedList-pagination-controls button:disabled {
+    background: #333;
+    cursor: not-allowed;
+  }
+
+  .paginatedList-pagination-controls span {
+    color: var(--text-muted, #aaa);
+    font-size: 0.9rem;
+  }
+
+  .paginatedList-header {
+    display: flex;
+    justify-content: center;
+    margin : 20px 0px 20px 0px;  
+  }
+
+  #paginatedList-search {
+    width: min(90%, 400px);
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-accent, --color-primary);
+    border-radius: 8px;
+    background: var(--color-surface, --color-surface);
+    color: var(--color-muted, --color-text);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  #paginatedList-search:focus {
+    outline: none;
+    border-color: var(--color-primary, --color-primary);
+  }
+
+
+

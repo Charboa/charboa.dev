@@ -1,5 +1,5 @@
 document.addEventListener("cardsLoaded", () => {
-  const cards = document.querySelectorAll('.project-card, .games-card');
+  const cards = document.querySelectorAll('.paginatedList-element');
 
   cards.forEach(card => {
     card.addEventListener('mousemove', (event) => {
