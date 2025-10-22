@@ -74,17 +74,21 @@ a {
 
 .unity-container {
   position: relative;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  width: 1280px;
+  padding-top: 56.25%; /* 16:9 – change to 75% for 4:3 etc. */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  background: #000; /* fallback while loading */
 }
 
 .unity-container iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 1280px;
   height: 720px;
-  border: none;
-  border-radius: 12px;
+  border: 0;
+  display: block;
 }
 
 

@@ -3,8 +3,8 @@
 <div class="unity-container">
   <iframe
     src="/games/Flappyscape/index.html"
-    width="720"
-    height="1280"
+    width="1280"
+    height="720"
     frameborder="0"
     allowfullscreen>
   </iframe>
