@@ -12,7 +12,6 @@ document.addEventListener("cardsLoaded", () => {
 
       const rotateX = ((mouseY - centerY) / height) * 20;
       const rotateY = ((mouseX - centerX) / width) * -20;
-
       card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
       // Set radial shine position
