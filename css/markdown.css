@@ -1,0 +1,152 @@
+/* === Markdown Page Styles === */
+
+.markdown-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  color: var(--text-color, #e0e0e0);
+  background: var(--background-color, transparent);
+  line-height: 1.8;
+}
+
+/* Headings */
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4 {
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color, #ffffff);
+}
+
+.markdown-container h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  border-bottom: 2px solid var(--border-color, #444);
+  padding-bottom: 0.3em;
+}
+.markdown-container h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+.markdown-container h3 {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+/* Paragraphs */
+.markdown-container p {
+  margin: 1.2rem 0;
+  color: var(--text-color, #d0d0d0);
+}
+
+/* Links */
+.markdown-container a {
+  color: var(--link-color, #9cf);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border 0.2s ease, color 0.2s ease;
+}
+.markdown-container a:hover {
+  color: var(--link-hover-color, #fff);
+  border-bottom: 1px solid var(--link-hover-color, #fff);
+}
+
+/* Images */
+.markdown-container img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 2rem 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Lists */
+.markdown-container ul,
+.markdown-container ol {
+  margin: 1.5rem 0 1.5rem 2rem;
+  padding: 0;
+}
+.markdown-container li {
+  margin: 0.4rem 0;
+}
+
+/* Blockquotes */
+.markdown-container blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--accent-color, #888);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-style: italic;
+  color: var(--text-muted, #aaa);
+}
+
+/* Code Blocks */
+.markdown-container pre {
+  background: #1b1b1b;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+.markdown-container code {
+  font-family: "Fira Code", monospace;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Tables */
+.markdown-container table {
+  border-collapse: collapse;
+  margin: 2rem 0;
+  width: 100%;
+}
+.markdown-container th,
+.markdown-container td {
+  border: 1px solid #444;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.markdown-container th {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Horizontal Rule */
+.markdown-container hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 3rem 0;
+}
+
+/* Embedded Unity/Game Containers */
+.markdown-container .unity-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 */
+  margin: 3rem 0;
+}
+.markdown-container .unity-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  background: #000;
+}
+
+/* Responsive text scaling */
+@media (max-width: 768px) {
+  .markdown-container {
+    padding: 2rem 1rem;
+  }
+  .markdown-container h1 {
+    font-size: 1.8rem;
+  }
+  .markdown-container h2 {
+    font-size: 1.5rem;
+  }
+}

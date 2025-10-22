@@ -3,6 +3,6 @@
     "title": "Flappyscape",
     "description": "Control a giant laser beam to destroy drones. Help flappy on its escape!",
     "image": "/resources/flappyscapeCover.png",
-    "link": "/play"
+    "link": "/pages/markdown.html?md=/markdowns/my-first-post.md"
   }
 ]
