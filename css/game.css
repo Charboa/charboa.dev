@@ -9,49 +9,90 @@
   flex-wrap: wrap;
 }
 
-.gallery {
+.carousel-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  max-width: 800px;
-  width: 100%;
+  overflow: hidden;
 }
 
-.main-screenshot img {
+.carousel-main {
+  position: relative;
   width: 100%;
-  max-height: 450px;
+  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
   border-radius: 8px;
   object-fit: cover;
+  user-select: none;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
-.screenshot-gallery {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding: 0.5rem 0;
-  width: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-accent) transparent;
-}
-
-.screenshot-gallery img {
-  width: 120px;
-  height: 68px;
-  object-fit: cover;
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
-  border-radius: 4px;
-  opacity: 0.7;
-  transition: opacity 0.2s, transform 0.2s;
-  flex-shrink: 0;
+  border-radius: 50%;
+  z-index: 5;
+  transition: background 0.2s ease;
 }
 
-.screenshot-gallery img:hover,
-.screenshot-gallery img.active {
-  opacity: 1;
+.carousel-arrow:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+.carousel-arrow.left {
+  left: 10px;
+}
+
+.carousel-arrow.right {
+  right: 10px;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 0.4rem;
+}
+
+.carousel-thumbnails img {
+  width: 80px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.carousel-thumbnails img.active,
+.carousel-thumbnails img:hover {
   transform: scale(1.1);
+  opacity: 1;
+}
+
+.carousel-thumbnails::-webkit-scrollbar {
+  height: 6px;
+}
+.carousel-thumbnails::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
 }
 
 .game-info {

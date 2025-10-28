@@ -1,4 +1,4 @@
-import { createCarousel } from '/css/modules/carousel.js';
+import Carousel from '/js/modules/carousel.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
    
@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('#game-title').textContent = game.title;
   document.querySelector('#release-date').textContent = game.releaseDate;
   document.querySelector('#game-description').textContent = game.description;
-  document.querySelector('#hero-img').src = game.heroImage || game.screenshots[0];
 
   // Populate tags
   const tagList = document.querySelector('#tag-list');
@@ -47,8 +46,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Populate gallery
-  setupScreenshotGallery(game.screenshots || []);
+  // Create screenshot carousel
+  const carousel = new Carousel('.carousel-container', game.screenshots || [], {
+    autoplay: false,
+    autoplayInterval: 4500,
+    startIndex: 0,
+  });
+
+  // store it somewhere if you need to destroy later:
+  window._currentCarousel = carousel;
 
   // Populate links
   const links = game.links || {};
@@ -80,7 +86,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-const galleryContainer = document.querySelector('.screenshot-carousel');
-createCarousel(galleryContainer, game.screenshots);
+
 
 

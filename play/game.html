@@ -36,15 +36,25 @@
 
       <!-- Page Content -->
 
-        <!-- HERO SECTION -->
+      <!-- HERO SECTION -->
       <section class="game-hero">
-        <div class="gallery">
-          <div class="main-screenshot">
-            <img id="hero-img" src="" alt="Main Screenshot">
+        <div class="carousel-container">
+          <!-- Masked Track Wrapper -->
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="hero-track">
+              <!-- JS will populate images here -->
+            </div>
           </div>
-          <div class="screenshot-gallery" id="screenshots"></div>
+
+          <!-- Arrows -->
+          <button class="carousel-arrow left">‹</button>
+          <button class="carousel-arrow right">›</button>
+
+          <!-- Thumbnails -->
+          <div class="carousel-thumbnails" id="screenshots"></div>
         </div>
 
+        <!-- Game Info -->
         <div class="game-info">
           <h1 id="game-title"></h1>
           <p class="release-date">Released <span id="release-date"></span></p>
@@ -53,6 +63,9 @@
           <button id="play-button">▶ Play Now</button>
         </div>
       </section>
+
+
+
 
       <!-- ABOUT SECTION -->
       <section class="game-about">
@@ -80,12 +93,11 @@
       <!-- Footer -->
       <footer class="footer">
           <span class="span">&copy; 2025 Charboa. All rights reserved.</p>
-          </footer>
-          
+          </footer>          
       </div>
         
     <script src="/js/loader.js"></script>    
-    <script type = "module" src="/js/carousel.js"></script>   
+    <script type = "module" src="/js/modules/carousel.js"></script>   
 
 </body>
 </html>
