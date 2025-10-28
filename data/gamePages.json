@@ -1,0 +1,24 @@
+[
+    {
+      "id": "flappyscape",
+      "name": "Flappyscape",
+      "shortDescription": "Control a giant laser beam to destroy drones. Help Flappy escape!",
+      "longDescription": "Flappyscape is an intense arcade experience where you pilot a giant laser beam to destroy incoming drones and navigate through challenging obstacles. Test your reflexes, chain combos, and help Flappy complete its daring escape.",
+      "banner": "/resources/flappyscapeCover.png",
+      "screenshots": [
+        "/resources/flappyscape-ss-1.gif",
+        "/resources/flappyscape-ss-2.gif",
+        "/resources/flappyscape-ss-1.gif",
+        "/resources/flappyscape-ss-2.gif"
+      ],
+      "webglBuild": "/games/Flappyscape",
+      "tags": ["Arcade", "Casual", "Retro"],
+      "releaseDate": "2022-05-10",
+      "links": {
+        "itch": null,
+        "github": null,
+        "steam": null
+      }
+    }
+]
+

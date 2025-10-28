@@ -3,12 +3,12 @@
     "title": "Flappyscape",
     "description": "Control a giant laser beam to destroy drones. Help flappy on its escape!",
     "image": "/resources/flappyscapeCover.png",
-    "link": "/pages/markdown.html?md=/markdowns/Flappyscape.md"
+    "link": "game.html?id=flappyscape" 
   },
   {
     "title": "Type Hero",
     "description": "Master your keyboard and become the type hero!",
     "image": "/resources/type hero logo.png",
-    "link": "/pages/markdown.html?md=/markdowns/Type Hero.md"
+    "link": ""
   }
 ]

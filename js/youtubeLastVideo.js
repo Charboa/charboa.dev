@@ -1,10 +1,3 @@
-window.addEventListener("load", () => {
-  const loader = document.getElementById("loader");
-  if (loader) {
-    loader.classList.add("hidden");
-  }
-});
-
 // Function to load the latest video
 async function loadLatestVideo() {
     try {
@@ -21,6 +14,3 @@ async function loadLatestVideo() {
 
 // Call the function when page loads
 document.addEventListener("DOMContentLoaded", loadLatestVideo);
-
-
-
