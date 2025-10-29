@@ -1,4 +1,5 @@
 export default class Carousel {
+  // Sets up all elements, state variables, and binds methods.
   constructor(container, images = [], options = {}) {
     this.container =
       typeof container === 'string' ? document.querySelector(container) : container;
@@ -18,15 +19,29 @@ export default class Carousel {
       transitionDuration: options.transitionDuration || 400,
     };
 
+    // Main carousel state
     this.isDragging = false;
     this.startX = 0;
     this.dragThreshold = 50;
+
+    // Thumbnail drag state
+    this.isDraggingThumbs = false;
+    this.hasDraggedThumbs = false;
+    this.thumbStartX = 0;
+    this.thumbScrollLeft = 0;
+    this.thumbDragThreshold = 10;
+    this.thumbDragDistance = 0;
+
+    // Inertia state
+    this.thumbVelocity = 0;
+    this.thumbLastX = 0;
+    this.thumbDamping = 0.985;
+    this.inertiaFrameId = null;
 
     this._bindMethods();
     this._populateTrack();
     this._renderThumbnails();
 
-    // FIXED: wait for all images to load before setting initial position
     const trackImages = this.track.querySelectorAll('img');
     let loadedCount = 0;
     trackImages.forEach(img => {
@@ -41,6 +56,7 @@ export default class Carousel {
     this._attachEvents();
   }
 
+  // Binds 'this' context to all event handlers.
   _bindMethods() {
     this.next = this.next.bind(this);
     this.prev = this.prev.bind(this);
@@ -48,28 +64,27 @@ export default class Carousel {
     this._onPointerMove = this._onPointerMove.bind(this);
     this._onPointerUp = this._onPointerUp.bind(this);
     this._onTransitionEnd = this._onTransitionEnd.bind(this);
+    this._onThumbsPointerDown = this._onThumbsPointerDown.bind(this);
+    this._onThumbsPointerMove = this._onThumbsPointerMove.bind(this);
+    this._onThumbsPointerUp = this._onThumbsPointerUp.bind(this);
+    this._inertiaLoop = this._inertiaLoop.bind(this);
   }
 
+  // Creates main slides and clones for seamless looping.
   _populateTrack() {
     this.track.innerHTML = '';
     if (this.len === 0) return;
-
-    // Clone last slide at start
     const lastClone = document.createElement('img');
     lastClone.src = this.images[this.len - 1];
     lastClone.draggable = false;
     lastClone.classList.add('clone');
     this.track.appendChild(lastClone);
-
-    // Real slides
     this.images.forEach(src => {
       const img = document.createElement('img');
       img.src = src;
       img.draggable = false;
       this.track.appendChild(img);
     });
-
-    // Clone first slide at end
     const firstClone = document.createElement('img');
     firstClone.src = this.images[0];
     firstClone.draggable = false;
@@ -77,6 +92,7 @@ export default class Carousel {
     this.track.appendChild(firstClone);
   }
 
+  // Creates thumbnails and handles click-vs-drag logic.
   _renderThumbnails() {
     this.thumbsContainer.innerHTML = '';
     this.images.forEach((src, i) => {
@@ -84,45 +100,68 @@ export default class Carousel {
       img.src = src;
       img.draggable = false;
       img.classList.toggle('active', i === this.currentIndex);
-      img.addEventListener('click', () => this._goTo(i));
+      img.addEventListener('click', (e) => {
+        if (this.hasDraggedThumbs) {
+          e.preventDefault();
+          return;
+        }
+        this._goTo(i);
+      });
       this.thumbsContainer.appendChild(img);
     });
+    const activeThumb = this.thumbsContainer.querySelector('.active');
+    if (activeThumb) {
+        activeThumb.scrollIntoView({ 
+            inline: 'nearest',
+            block: 'nearest' 
+        });
+    }
   }
 
+  // Instantly sets the carousel to the correct starting slide.
   _setInitialPosition() {
     const width = this.container.querySelector('.carousel-track-wrapper').offsetWidth;
     this.track.style.transition = 'none';
     this.track.style.transform = `translateX(-${(this.currentIndex + 1) * width}px)`;
   }
 
+  // Moves to a specific slide and updates/scrolls thumbnails.
   _goTo(index, instant = false) {
     const width = this.container.querySelector('.carousel-track-wrapper').offsetWidth;
     const realIndex = index + 1;
-
     if (instant) this.track.style.transition = 'none';
     else this.track.style.transition = `transform ${this.options.transitionDuration}ms ease`;
-
     this.track.style.transform = `translateX(-${realIndex * width}px)`;
     this.currentIndex = ((index % this.len) + this.len) % this.len;
-
-    Array.from(this.thumbsContainer.children).forEach((el, i) =>
-      el.classList.toggle('active', i === this.currentIndex)
-    );
+    Array.from(this.thumbsContainer.children).forEach((el, i) => {
+      const isActive = i === this.currentIndex;
+      el.classList.toggle('active', isActive);
+      if (isActive) {
+        el.scrollIntoView({
+          behavior: 'smooth',
+          inline: 'nearest',
+          block: 'nearest',
+        });
+      }
+    });
   }
 
+  // Goes to the next slide.
   next() { this._slide(1); }
+
+  // Goes to the previous slide.
   prev() { this._slide(-1); }
 
+  // Core logic for slide transition.
   _slide(delta) {
     this.currentIndex += delta;
     this._goTo(this.currentIndex);
     this.track.addEventListener('transitionend', this._onTransitionEnd, { once: true });
   }
 
+  // Resets to the real slide after a clone transition for looping.
   _onTransitionEnd() {
     const width = this.container.querySelector('.carousel-track-wrapper').offsetWidth;
-
-    // seamless loop using clones
     if (this.currentIndex < 0) {
       this.currentIndex = this.len - 1;
       this._goTo(this.currentIndex, true);
@@ -132,12 +171,14 @@ export default class Carousel {
     }
   }
 
+  // Handles drag start on the main carousel.
   _onPointerDown(e) {
     this.isDragging = true;
     this.startX = e.clientX;
     this.track.style.transition = 'none';
   }
 
+  // Handles drag move on the main carousel.
   _onPointerMove(e) {
     if (!this.isDragging) return;
     const deltaX = e.clientX - this.startX;
@@ -145,6 +186,7 @@ export default class Carousel {
     this.track.style.transform = `translateX(-${(this.currentIndex + 1) * width - deltaX}px)`;
   }
 
+  // Handles drag end on the main carousel, snapping to a slide.
   _onPointerUp(e) {
     if (!this.isDragging) return;
     this.isDragging = false;
@@ -156,14 +198,84 @@ export default class Carousel {
     }
   }
 
+  // Attaches all event listeners for carousel and thumbnails.
   _attachEvents() {
     this.arrowLeft.addEventListener('click', this.prev);
     this.arrowRight.addEventListener('click', this.next);
-
     this.track.addEventListener('pointerdown', this._onPointerDown);
     window.addEventListener('pointermove', this._onPointerMove);
     window.addEventListener('pointerup', this._onPointerUp);
-
+    this.thumbsContainer.addEventListener('pointerdown', this._onThumbsPointerDown);
+    window.addEventListener('pointermove', this._onThumbsPointerMove);
+    window.addEventListener('pointerup', this._onThumbsPointerUp);
     window.addEventListener('resize', () => this._setInitialPosition());
+  }
+
+  // Handles drag start on the thumbnail container.
+  _onThumbsPointerDown(e) {
+    e.preventDefault(); 
+    this.isDraggingThumbs = true;
+    this.hasDraggedThumbs = false; 
+    this.thumbStartX = e.clientX;
+    this.thumbScrollLeft = this.thumbsContainer.scrollLeft;
+    this.thumbsContainer.classList.add('is-dragging');
+    this.thumbVelocity = 0;
+    this.thumbLastX = e.clientX;
+    cancelAnimationFrame(this.inertiaFrameId);
+    this.thumbDragDistance = 0;
+  }
+
+  // Handles drag move on thumbnails and calculates velocity.
+  _onThumbsPointerMove(e) {
+    if (!this.isDraggingThumbs) return;
+    e.preventDefault();
+
+    const currentX = e.clientX;
+
+    if (!this.hasDraggedThumbs) {
+      // We are in the "dead zone", checking if we should start dragging.
+      this.thumbDragDistance = Math.abs(currentX - this.thumbStartX);
+
+      if (this.thumbDragDistance > this.thumbDragThreshold) {
+        // Threshold passed. Officially start the drag.
+        this.hasDraggedThumbs = true;
+        this.thumbStartX = currentX;
+        this.thumbScrollLeft = this.thumbsContainer.scrollLeft;
+      } else {
+        // Still in the dead zone, do nothing.
+        return;
+      }
+    }
+    
+    // If we're here, we are in an active drag.
+    const walk = currentX - this.thumbStartX;
+    this.thumbsContainer.scrollLeft = this.thumbScrollLeft - walk;
+    
+    // Update velocity for inertia
+    this.thumbVelocity = currentX - this.thumbLastX;
+    this.thumbLastX = currentX;
+  }
+
+  // Handles drag end on thumbnails and starts inertia.
+  _onThumbsPointerUp() {
+    if (!this.isDraggingThumbs) return; 
+    this.isDraggingThumbs = false;
+    this.thumbsContainer.classList.remove('is-dragging');
+    
+    if (this.hasDraggedThumbs && Math.abs(this.thumbVelocity) > 1) {
+      this.inertiaFrameId = requestAnimationFrame(this._inertiaLoop);
+    }
+  }
+
+  // Applies momentum scrolling (inertia) using requestAnimationFrame.
+  _inertiaLoop() {
+    if (!this.thumbsContainer) return;
+    this.thumbsContainer.scrollLeft -= this.thumbVelocity;
+    this.thumbVelocity *= this.thumbDamping;
+    if (Math.abs(this.thumbVelocity) > 0.5) {
+      this.inertiaFrameId = requestAnimationFrame(this._inertiaLoop);
+    } else {
+      this.thumbVelocity = 0;
+    }
   }
 }

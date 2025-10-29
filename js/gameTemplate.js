@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.title = game.title;
   document.querySelector('#game-title').textContent = game.title;
   document.querySelector('#release-date').textContent = game.releaseDate;
-  document.querySelector('#game-description').textContent = game.description;
+  document.querySelector('#game-description').textContent = game.shortDescription;
+  document.querySelector('#game-long-description').textContent = game.longDescription;
 
   // Populate tags
   const tagList = document.querySelector('#tag-list');

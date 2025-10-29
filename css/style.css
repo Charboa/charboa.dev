@@ -251,8 +251,8 @@
     backdrop-filter: blur(8px);
   }
 
-  .page main{
-    padding-top: 25vw;
+  .page {
+    padding-top: 5vw;
   }
 
   .page .navigation {
@@ -275,7 +275,7 @@
   }
 
   .page .nav-links a {
-    font-size: 4.4vw;
+    font-size: 1vw;
   }
 
   .page .hero-title {
@@ -298,7 +298,7 @@
   }
 
   .page .text-wrapper {
-    font-size: 10vw;
+    font-size: 2vw;
   }
 
 }

@@ -12,44 +12,43 @@
     <script type="module" src="/js/gameTemplate.js"></script>
 </head>
 <body>
-    <div class="page">
+  <div class="page">
 
-      <!-- Loader -->
-        <div id="loader" class="page-loader">
-            <div class="spinner"></div>
-        </div>
+    <!-- Loader -->
+    <div id="loader" class="page-loader">
+      <div class="spinner"></div>
+    </div>
 
-      <!-- Header -->
-      <header class="navigation">
-          <div class="navbar">
-            <a href="/" class="text-wrapper">charboa.dev</a>
-            <nav class="nav-container">
-              <ul class="nav-links">
-                <li><a href="/">home</a></li>
-                <li><a href="/play" class="active">play</a></li>
-                <li><a href="/code">code</a></li>
-                <li><a href="/contact">contact</a></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
+    <!-- Header -->
+    <header class="navigation">
+      <div class="navbar">
+        <a href="/" class="text-wrapper">charboa.dev</a>
+        <nav class="nav-container">
+          <ul class="nav-links">
+            <li><a href="/">home</a></li>
+            <li><a href="/play" class="active">play</a></li>
+            <li><a href="/code">code</a></li>
+            <li><a href="/contact">contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-      <!-- Page Content -->
-
-      <!-- HERO SECTION -->
-      <section class="game-hero">
-        <div class="carousel-container">
-          <!-- Masked Track Wrapper -->
+    <!-- HERO SECTION -->
+    <section class="game-hero">
+      <div class="hero-grid">
+        
+        <!-- Carousel -->
+        <div class="carousel-container">          
           <div class="carousel-track-wrapper">
+             <!-- Arrows -->
+            <button class="carousel-arrow left">‹</button>
+            <button class="carousel-arrow right">›</button>
             <div class="carousel-track" id="hero-track">
               <!-- JS will populate images here -->
             </div>
           </div>
-
-          <!-- Arrows -->
-          <button class="carousel-arrow left">‹</button>
-          <button class="carousel-arrow right">›</button>
-
+                
           <!-- Thumbnails -->
           <div class="carousel-thumbnails" id="screenshots"></div>
         </div>
@@ -57,48 +56,50 @@
         <!-- Game Info -->
         <div class="game-info">
           <h1 id="game-title"></h1>
-          <p class="release-date">Released <span id="release-date"></span></p>
+          <p class="release-date">
+            Released <span id="release-date"></span>
+          </p>
           <div class="tags" id="tag-list"></div>
-          <p id="game-description" class="short-description"></p>
+          <p class="game-description" id="game-description"></p>
           <button id="play-button">▶ Play Now</button>
         </div>
-      </section>
 
-
-
-
-      <!-- ABOUT SECTION -->
-      <section class="game-about">
-        <h2>About This Game</h2>
-        <p id="game-long-description"></p>
-      </section>
-
-      <!-- LINKS SECTION -->
-      <section class="game-links-section">
-        <h2>Links</h2>
-        <div class="game-links">
-          <a id="github-link" target="_blank">GitHub</a>
-          <a id="steam-link" target="_blank">Steam</a>
-          <a id="itch-link" target="_blank">Itch.io</a>
-        </div>
-      </section>
-
-      <!-- WEBGL SECTION -->
-      <section id="webgl-container" class="webgl-section hidden">
-        <h2>Play</h2>
-        <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
-      </section>
-
-      
-      <!-- Footer -->
-      <footer class="footer">
-          <span class="span">&copy; 2025 Charboa. All rights reserved.</p>
-          </footer>          
       </div>
-        
-    <script src="/js/loader.js"></script>    
-    <script type = "module" src="/js/modules/carousel.js"></script>   
+    </section>
 
+    <!-- ABOUT SECTION -->
+    <section class="game-about">
+      <h2>About This Game</h2>
+      <p id="game-long-description"></p>
+    </section>
+
+    <!-- LINKS SECTION -->
+    <section class="game-links-section">
+      <h2>Links</h2>
+      <div class="game-links">
+        <a id="github-link" target="_blank">GitHub</a>
+        <a id="steam-link" target="_blank">Steam</a>
+        <a id="itch-link" target="_blank">Itch.io</a>
+      </div>
+    </section>
+
+    <!-- WEBGL SECTION -->
+    <section id="webgl-container" class="webgl-section hidden">
+      <h2>Play</h2>
+      <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="span">&copy; 2025 Charboa. All rights reserved.</span>
+    </footer>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/loader.js"></script>
+  <script type="module" src="/js/modules/carousel.js"></script>
 </body>
+
 </html>
 
