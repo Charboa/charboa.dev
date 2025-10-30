@@ -7,7 +7,7 @@
 }
 
 .carousel-track-wrapper {
-  overflow: hidden; /* hides the rest of the band */
+  overflow: hidden;
   width: 100%;
   position: relative;
   border-radius: 12px;
@@ -17,6 +17,8 @@
   display: flex;
   transition: transform 0.1s ease;
   user-select: none;
+
+  touch-action: pan-y;
 }
 
 .carousel-track img {
@@ -35,6 +37,8 @@
   font-size: 4vw;
   cursor: pointer;
   z-index: 10;
+
+  touch-action: manipulation;
 }
 
 .carousel-arrow.left { left: 0px; }
@@ -73,6 +77,8 @@
   border-style: solid;
   border-width: 2px;
   border-color: transparent;
+
+  touch-action: manipulation;
 }
 
 .carousel-thumbnails img:hover {

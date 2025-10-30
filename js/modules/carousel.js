@@ -22,6 +22,8 @@ export default class Carousel {
     // Main carousel state
     this.isDragging = false;
     this.startX = 0;
+    this.startY = 0; // Added for axis-locking
+    this.isDragLocked = false; // Added for axis-locking
     this.dragThreshold = 50;
 
     // Thumbnail drag state
@@ -35,7 +37,7 @@ export default class Carousel {
     // Inertia state
     this.thumbVelocity = 0;
     this.thumbLastX = 0;
-    this.thumbDamping = 0.985;
+    this.thumbDamping = 0.955;
     this.inertiaFrameId = null;
 
     this._bindMethods();
@@ -174,28 +176,64 @@ export default class Carousel {
   // Handles drag start on the main carousel.
   _onPointerDown(e) {
     this.isDragging = true;
+    this.isDragLocked = false; // Reset lock
     this.startX = e.clientX;
+    this.startY = e.clientY; // Store Y
     this.track.style.transition = 'none';
   }
 
   // Handles drag move on the main carousel.
   _onPointerMove(e) {
     if (!this.isDragging) return;
-    const deltaX = e.clientX - this.startX;
+
+    const currentX = e.clientX;
+    const currentY = e.clientY;
+    const deltaX = Math.abs(currentX - this.startX);
+    const deltaY = Math.abs(currentY - this.startY);
+
+    if (!this.isDragLocked) {
+      // We haven't locked to an axis yet
+      if (deltaX > this.thumbDragThreshold && deltaX > deltaY) {
+        // Lock to horizontal drag
+        this.isDragLocked = true;
+        // Re-baseline startX to prevent jump
+        this.startX = currentX;
+      } else if (deltaY > this.thumbDragThreshold && deltaY > deltaX) {
+        // This is a vertical scroll, abort drag
+        this.isDragging = false;
+        return;
+      } else {
+        // Not past threshold, do nothing
+        return;
+      }
+    }
+
+    // If we're here, we are locked to a horizontal drag
+    e.preventDefault(); // Prevent page scroll
+    const dragAmount = currentX - this.startX;
     const width = this.container.querySelector('.carousel-track-wrapper').offsetWidth;
-    this.track.style.transform = `translateX(-${(this.currentIndex + 1) * width - deltaX}px)`;
+    this.track.style.transform = `translateX(-${(this.currentIndex + 1) * width - dragAmount}px)`;
   }
 
   // Handles drag end on the main carousel, snapping to a slide.
   _onPointerUp(e) {
     if (!this.isDragging) return;
     this.isDragging = false;
-    const delta = e.clientX - this.startX;
-    if (Math.abs(delta) > this.dragThreshold) {
-      delta > 0 ? this.prev() : this.next();
+
+    if (this.isDragLocked) {
+      // Only snap if we were actually dragging horizontally
+      const delta = e.clientX - this.startX;
+      if (Math.abs(delta) > this.dragThreshold) {
+        delta > 0 ? this.prev() : this.next();
+      } else {
+        this._goTo(this.currentIndex);
+      }
     } else {
+      // It was a tap or vertical scroll, just snap back
       this._goTo(this.currentIndex);
     }
+
+    this.isDragLocked = false; // Reset lock
   }
 
   // Attaches all event listeners for carousel and thumbnails.
@@ -233,25 +271,20 @@ export default class Carousel {
     const currentX = e.clientX;
 
     if (!this.hasDraggedThumbs) {
-      // We are in the "dead zone", checking if we should start dragging.
       this.thumbDragDistance = Math.abs(currentX - this.thumbStartX);
 
       if (this.thumbDragDistance > this.thumbDragThreshold) {
-        // Threshold passed. Officially start the drag.
         this.hasDraggedThumbs = true;
         this.thumbStartX = currentX;
         this.thumbScrollLeft = this.thumbsContainer.scrollLeft;
       } else {
-        // Still in the dead zone, do nothing.
         return;
       }
     }
     
-    // If we're here, we are in an active drag.
     const walk = currentX - this.thumbStartX;
     this.thumbsContainer.scrollLeft = this.thumbScrollLeft - walk;
     
-    // Update velocity for inertia
     this.thumbVelocity = currentX - this.thumbLastX;
     this.thumbLastX = currentX;
   }
