@@ -1,7 +1,7 @@
 .carousel-container {
   position: relative;
   display: flex;
-  width: 50%;
+  width: 50vw;
   flex-direction: column;
   justify-content: center;
 }
@@ -56,6 +56,8 @@
   
   /* Hide scrollbar for a cleaner look */
   scrollbar-width: none; /* Firefox */
+
+  touch-action: pan-y;
 }
 
 .carousel-thumbnails::-webkit-scrollbar {
