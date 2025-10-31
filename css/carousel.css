@@ -1,63 +1,68 @@
-.carousel-container {
-  position: relative;
-  display: flex;
-  width: 50vw;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .carousel-track-wrapper {
-  overflow: hidden;
-  width: 100%;
   position: relative;
-  border-radius: 12px;
+  overflow: hidden;
+  width: 100%; /* Takes 100% width of its container */
+  border-radius: 8px;
 }
 
 .carousel-track {
   display: flex;
-  transition: transform 0.1s ease;
   user-select: none;
-
   touch-action: pan-y;
+  transition: transform 0.1s ease;
 }
 
 .carousel-track img {
   width: 100%;
+  height: auto;
   flex-shrink: 0;
   border-radius: 8px;
   object-fit: cover;
 }
 
+/* ======================= */
+/* --- Arrow Navigation --- */
+/* ======================= */
+
 .carousel-arrow {
   position: absolute;
   height: 100%;
-  background: rgba(0,0,0,0.1);
-  color: #fff;
-  border: 0px;
-  font-size: 4vw;
-  cursor: pointer;
+  top: 0;
   z-index: 10;
-
+  
+  font-size: 2.5rem; /* Switched to rem for predictable size */
+  color: #fff;
+  background: rgba(0,0,0,0.1);
+  
+  border: 0;
+  cursor: pointer;
+  user-select: none;
   touch-action: manipulation;
 }
 
-.carousel-arrow.left { left: 0px; }
-.carousel-arrow.right { right: 0px; }
+.carousel-arrow.left { left: 0; }
+.carousel-arrow.right { right: 0; }
+
+/* ======================== */
+/* --- Thumbnail Strip --- */
+/* ======================== */
 
 .carousel-thumbnails {
   display: flex;
-  overflow-x: auto;
-  overflow-y: visible;
   gap: 0.75rem;
   margin-top: 1rem;
-  justify-content: start;
-  cursor: default; 
-  user-select: none; 
   
-  /* Hide scrollbar for a cleaner look */
-  scrollbar-width: none; /* Firefox */
-
+  overflow-x: auto;
+  overflow-y: hidden; /* Safer than 'visible' */
+  
+  justify-content: start;
+  user-select: none; 
+  cursor: grab;
   touch-action: pan-y;
+  
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
 }
 
 .carousel-thumbnails::-webkit-scrollbar {
@@ -68,49 +73,41 @@
   cursor: grabbing;
 }
 
-.carousel-thumbnails img {  
-  width: 128px;
-  height: 72px;
+.carousel-thumbnails img { 
+  /* Flexible thumbnail size: set height, width is automatic */
+  height: 60px;
+  aspect-ratio: 16/9;
+  
   object-fit: cover;
   border-radius: 4px;
   opacity: 0.75;
-  transition: transform 0.2s, opacity 0.2s;
-
+  touch-action: manipulation;
+  
+  /* Transparent border fix */
   border-style: solid;
   border-width: 2px;
   border-color: transparent;
 
-  touch-action: manipulation;
+  transition: transform 0.2s, opacity 0.2s, border-color 0.2s;
 }
+
+/* --- Thumbnail States --- */
 
 .carousel-thumbnails img:hover {
   opacity: 1; 
-
   border-style: dotted;
-  border-width: 2px;
   border-color: var(--color-secondary);
 }
 
-.carousel-thumbnails img.active{
+.carousel-thumbnails img.active {
   opacity: 1;
-  
-  border-style: solid;
-  border-width: 2px;
   border-color: var(--color-primary);
-
-  cursor: default;
+  cursor: auto;
 }
 
-
-@media (max-width: 1200px) {
-  .carousel-container {
-  width: 100vw;
-  padding: 5vw;
-}
-
-.carousel-arrow{
-  font-size: 8vw;
-}
-
-}
-
+/* NO MEDIA QUERY
+  
+  All responsive behavior (like changing the .carousel-container's 
+  padding or width) should be handled by the parent page's 
+  stylesheet (e.g., game.css), just as you are doing now.
+*/

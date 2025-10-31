@@ -29,8 +29,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Populate hero info
   document.title = game.title;
+  // Populate banner
+  const bannerImg = document.querySelector('#game-banner');
+  bannerImg.src = game.banner; 
+  bannerImg.alt = game.title + " Banner";
+  bannerImg.draggable = false;
+  bannerImg.style.userSelect = 'none';
+  // Populate hero info
   document.querySelector('#game-title').textContent = game.title;
   document.querySelector('#release-date').textContent = game.releaseDate;
   document.querySelector('#game-description').textContent = game.shortDescription;

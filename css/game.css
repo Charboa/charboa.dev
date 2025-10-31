@@ -1,39 +1,75 @@
 .game-hero {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin: 5vw;
+  box-sizing: border-box;
   background-color: var(--color-surface);
 }
 
-.hero-grid{
+.hero-grid {
   display: flex;
-  flex-direction: row;
-  padding: 2vw;
-  gap: 1vw;
+  flex-direction: row; /* Desktop: side-by-side */
+  padding: 2%;
+  gap: 2%;
+}
+
+.hero-grid .carousel-container {
+  width: 50%;
 }
 
 .game-info {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+  justify-content: space-between;
+  width: 50%;
+  text-align: start; 
 }
 
 #game-title {
   font-size: 2rem;
   font-weight: 600;
-  text-align: start;
 }
 
-.game-description{
+#game-banner {
+  display: block; 
+  width: 100%;    
+  border-radius: 8px;
+  height: auto;     /* Maintains aspect ratio */
+}
+
+.game-description {
   font-size: 1rem;
-  text-align: start;
   color: var(--color-muted);
+}
+
+.game-about {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2%;
+}
+
+.game-long-description{
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.game-links{
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+  margin: 2%;
+}
+
+.game-links a{
+  border-radius: 12px;
+  color: var(--color-secondary);
 }
 
 .release-date {
   font-size: .9rem;
-  text-align: start;
   color: var(--color-secondary);
 }
 
@@ -54,6 +90,7 @@
 #play-button {
   padding: 0.9rem 1.4rem;
   font-size: 1rem;
+  width: 100%;
   border: none;
   border-radius: 6px;
   background-color: var(--color-secondary);
@@ -65,15 +102,20 @@
   background-color: var(--color-primary);
 }
 
-.game-about,
-.game-links-section,
-.webgl-section {
+.content-section {
   max-width: 1000px;
   margin: 2rem auto;
   padding: 1rem 2rem;
 }
 
-.webgl-section iframe {
+#webgl-container{
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.webgl-frame iframe{
   width: 100%;
   aspect-ratio: 16/9;
   border-radius: 8px;
@@ -84,39 +126,88 @@
   display: none;
 }
 
-/* Responsive */
+/* =================== */
+/* --- Responsive --- */
+/* =================== */
+
 @media (max-width: 1200px) {
+  
   .game-hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    
+    margin: 0;
   }
 
-  .hero-grid{
-  display: block;
-  justify-items: center;
-  padding: 0vw;
- }
-
- .game-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
-  margin-top: 20px;
- }
-
-  .main-screenshot img {
-    max-height: 300px;
+  .hero-grid {
+    flex-direction: column; 
+    width: 100%;
+    padding: 0;
+    gap: 0; 
   }
-
-  .screenshot-gallery img {
-    width: 90px;
-    height: 50px;
-  }
-
+  
+  /* This rule flattens .game-info, allowing re-ordering */
   .game-info {
-    align-items: center;
+    display: contents; 
+  }
+
+  /* --- FIX ---
+   * Added .hero-grid to make this rule more specific.
+   * Now, box-sizing: border-box IS applied correctly.
+  */
+  .hero-grid .carousel-container {
+    order: 2; /* 2. Carousel */
+    width: 100%;
+    padding-top: 5%;
+  }
+  
+  /* --- Re-ordering Rules for game-info children --- */
+
+  #game-banner {
+    order: 1; /* 1. Banner */
+    width: 100%;
+    border-radius: 0;
+  }
+  
+  /* Individual items must now have their own layout */
+  #game-title { 
+    order: 3;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5vw;
     text-align: center;
+    margin-top: 1rem;
+  }
+  .release-date { 
+    order: 4; 
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .tags { 
+    order: 5;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5vw;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .game-description { 
+    order: 6; 
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5vw;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  #play-button { 
+    align-self: center;
+    order: 7;
+    width: 90%; 
+    margin: 1rem 0 2rem 0;
+  }
+
+  /* --- FIX ---
+   * Added .hero-grid for specificity
+  */
+  .hero-grid .carousel-arrow {
+    font-size: 8vw;
   }
 }

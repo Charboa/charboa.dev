@@ -4,7 +4,7 @@
       "title": "Flappyscape",
       "shortDescription": "Flappyscape is an intense arcade experience where you pilot a giant laser beam to destroy incoming drones and navigate through challenging obstacles. Test your reflexes, chain combos, and help Flappy complete its daring escape.",
       "longDescription": "Flappyscape is an intense arcade experience where you pilot a giant laser beam to destroy incoming drones and navigate through challenging obstacles. Test your reflexes, chain combos, and help Flappy complete its daring escape.",
-      "banner": "/resources/flappyscapeCover.png",
+      "banner": "/resources/flappyscapebanner.png",
       "screenshots": [
         "/resources/flappyscape-ss-1.gif",
         "/resources/flappyscape-ss-2.gif",
@@ -23,8 +23,8 @@
       "releaseDate": "2022-05-10",
       "links": {
         "itch": "https://charboa.itch.io/flappyscape",
-        "github": null,
-        "steam": null
+        "github": "https://charboa.itch.io/flappyscape",
+        "steam": "https://charboa.itch.io/flappyscape"
       }
     }
 ]
