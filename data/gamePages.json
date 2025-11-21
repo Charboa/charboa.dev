@@ -6,19 +6,12 @@
       "longDescription": "Flappyscape is an intense arcade experience where you pilot a giant laser beam to destroy incoming drones and navigate through challenging obstacles. Test your reflexes, chain combos, and help Flappy complete its daring escape.",
       "banner": "/resources/flappyscapebanner.png",
       "screenshots": [
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-2.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-2.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-2.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-1.gif",
-        "/resources/flappyscape-ss-2.gif"
+        "/resources/flappyscape-ss-1.png",
+        "/resources/flappyscape-ss-2.png",
+        "/resources/flappyscape-ss-3.png",
+        "/resources/flappyscape-ss-4.png"   
       ],
-      "webglBuild": "/games/Flappyscape",
+      "webglBuild": "/games/Type Hero",
       "tags": ["Arcade", "Casual", "Parody", "Classic"],
       "releaseDate": "2022-05-10",
       "links": {

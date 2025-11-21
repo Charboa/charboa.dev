@@ -82,17 +82,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   const webglContainer = document.querySelector('#webgl-container');
   const webglFrame = document.querySelector('#webgl-frame');
   document.querySelector('#play-button').addEventListener('click', () => {
-    if (webglContainer.classList.contains('hidden')) {
-      webglFrame.src = `${game.webglBuild}/index.html`;
-      webglContainer.classList.remove('hidden');
-      webglContainer.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      webglFrame.src = '';
-      webglContainer.classList.add('hidden');
-    }
+
+    webglFrame.src = `${game.webglBuild}/index.html`;     
+    webglContainer.scrollIntoView({ behavior: 'smooth' });
+     
   });
 });
 
+// Fullscreen button
+window.addEventListener('load', () => {
+  const fullscreenBtn = document.getElementById('unity-fullscreen-btn');
+  
+  // Make sure this matches your element ID (e.g. 'unity-canvas' or your iframe ID)
+  const gameElement = document.getElementById('webgl-frame'); 
+
+  if (!fullscreenBtn || !gameElement) {
+    console.warn('Fullscreen script error: Button or Game Element not found.');
+    return;
+  }
+
+  fullscreenBtn.addEventListener('click', () => {
+    // 1. Request Fullscreen
+    if (gameElement.requestFullscreen) {
+      gameElement.requestFullscreen();
+    } else if (gameElement.webkitRequestFullscreen) { /* Safari/Chrome */
+      gameElement.webkitRequestFullscreen();
+    } else if (gameElement.msRequestFullscreen) { /* IE11 */
+      gameElement.msRequestFullscreen();
+    }
+
+    setTimeout(() => {
+      gameElement.focus();
+    }, 100);
+  });
+});
 
 
 

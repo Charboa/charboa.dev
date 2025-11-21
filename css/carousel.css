@@ -1,9 +1,15 @@
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* No fixed height. The Aspect Ratio dictates the height. */
+}
 
 .carousel-track-wrapper {
   position: relative;
-  overflow: hidden;
-  width: 100%; /* Takes 100% width of its container */
+  width: 100%;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .carousel-track {
@@ -15,99 +21,54 @@
 
 .carousel-track img {
   width: 100%;
-  height: auto;
+  /* This enforces the height for the whole row */
+  aspect-ratio: 16/9;
+  object-fit: cover;
   flex-shrink: 0;
   border-radius: 8px;
-  object-fit: cover;
 }
-
-/* ======================= */
-/* --- Arrow Navigation --- */
-/* ======================= */
 
 .carousel-arrow {
   position: absolute;
   height: 100%;
   top: 0;
   z-index: 10;
-  
-  font-size: 2.5rem; /* Switched to rem for predictable size */
+  font-size: 2.5rem;
   color: #fff;
-  background: rgba(0,0,0,0.1);
-  
+  background: rgba(0,0,0,0);
   border: 0;
   cursor: pointer;
   user-select: none;
   touch-action: manipulation;
 }
-
 .carousel-arrow.left { left: 0; }
 .carousel-arrow.right { right: 0; }
-
-/* ======================== */
-/* --- Thumbnail Strip --- */
-/* ======================== */
 
 .carousel-thumbnails {
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
-  
   overflow-x: auto;
-  overflow-y: hidden; /* Safer than 'visible' */
-  
+  overflow-y: hidden;
   justify-content: start;
-  user-select: none; 
+  user-select: none;
   cursor: grab;
   touch-action: pan-y;
-  
-  /* Hide scrollbar */
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none;
 }
+.carousel-thumbnails::-webkit-scrollbar { display: none; }
+.carousel-thumbnails.is-dragging { cursor: grabbing; }
 
-.carousel-thumbnails::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
-}
-
-.carousel-thumbnails.is-dragging {
-  cursor: grabbing;
-}
-
-.carousel-thumbnails img { 
-  /* Flexible thumbnail size: set height, width is automatic */
+.carousel-thumbnails img {
   height: 60px;
   aspect-ratio: 16/9;
-  
   object-fit: cover;
   border-radius: 4px;
   opacity: 0.75;
   touch-action: manipulation;
-  
-  /* Transparent border fix */
-  border-style: solid;
-  border-width: 2px;
-  border-color: transparent;
-
+  border: 2px solid transparent;
   transition: transform 0.2s, opacity 0.2s, border-color 0.2s;
 }
 
-/* --- Thumbnail States --- */
-
-.carousel-thumbnails img:hover {
-  opacity: 1; 
-  border-style: dotted;
-  border-color: var(--color-secondary);
-}
-
-.carousel-thumbnails img.active {
-  opacity: 1;
-  border-color: var(--color-primary);
-  cursor: auto;
-}
-
-/* NO MEDIA QUERY
-  
-  All responsive behavior (like changing the .carousel-container's 
-  padding or width) should be handled by the parent page's 
-  stylesheet (e.g., game.css), just as you are doing now.
-*/
+.carousel-thumbnails img:hover { opacity: 1; border-style: dotted; border-color: var(--color-secondary); }
+.carousel-thumbnails img.active { opacity: 1; border-color: var(--color-primary); cursor: auto; }

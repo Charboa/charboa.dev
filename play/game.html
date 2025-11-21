@@ -34,6 +34,13 @@
       </div>
     </header>
 
+    <div class ="game-content">
+     
+      <!-- GAME NAVIGATION SECTION -->
+    <section class="game-navigation">
+      <a href="/play" class="link">← Back to games.</a>
+    </section>
+
     <!-- HERO SECTION -->
     <section class="game-hero">
       <div class="hero-grid">
@@ -67,22 +74,37 @@
 
       </div>
     </section>
+    
+     <!-- WEBGL SECTION -->
+    <section class="webgl-section">
+      <div id="webgl-container">
+        <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
+        <div class ="webgl-control-panel">
+          <span class="webgl-logo">charboa.dev</span>
+          <div class="webgl-controls">
+            <button id="unity-kill-btn" class="webgl-control-button">
+              <span>💀 Kill game</span> 
+            </button>
+            <button id="unity-fullscreen-btn" class="webgl-control-button">
+            <span>⛶ Fullscreen</span> 
+          </button>
+        </div>
+      </div>
+      </div>
+      
+    </section>
 
     <!-- ABOUT SECTION -->
     <section class="game-about">
       <p class = "game-long-description" id="game-long-description"></p>  
       <div class="game-links">
-        <a id="github-link" target="_blank">GitHub</a>
-        <a id="steam-link" target="_blank">Steam</a>
-        <a id="itch-link" target="_blank">Itch.io</a>
+        <a id="github-link" target="_blank" class="link">GitHub</a>
+        <a id="steam-link" target="_blank" class="link">Steam</a>
+        <a id="itch-link" target="_blank" class="link">Itch.io</a>
       </div>
     </section>
-
-    <!-- WEBGL SECTION -->
-    <section id="webgl-container" class="webgl-section hidden">
-      <h2>Play</h2>
-      <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
-    </section>
+  
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
