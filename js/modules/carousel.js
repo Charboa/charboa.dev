@@ -1,3 +1,5 @@
+import Loader from '/js/utils/loader.js';
+
 export default class Carousel {
   // Sets up all elements, state variables, and binds methods.
   constructor(container, images = [], options = {}) {
@@ -77,32 +79,39 @@ export default class Carousel {
   _populateTrack() {
     this.track.innerHTML = '';
     if (this.len === 0) return;
-    const lastClone = document.createElement('img');
-    lastClone.src = this.images[this.len - 1];
-    lastClone.draggable = false;
-    lastClone.classList.add('clone');
-    this.track.appendChild(lastClone);
-    this.images.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
+    
+     // Helper to use Loader
+    const addSlide = (src, isClone = false) => {
+      // Create image using Loader
+      const img = Loader.createImage(src);
+      
+      // Set specific carousel properties
       img.draggable = false;
+      if (isClone) img.classList.add('clone');
+      
       this.track.appendChild(img);
-    });
-    const firstClone = document.createElement('img');
-    firstClone.src = this.images[0];
-    firstClone.draggable = false;
-    firstClone.classList.add('clone');
-    this.track.appendChild(firstClone);
+    };
+
+    // Clone last
+    addSlide(this.images[this.len - 1], true);
+
+    // Real slides
+    this.images.forEach(src => addSlide(src));
+
+    // Clone first
+    addSlide(this.images[0], true);
   }
 
   // Creates thumbnails and handles click-vs-drag logic.
   _renderThumbnails() {
     this.thumbsContainer.innerHTML = '';
     this.images.forEach((src, i) => {
-      const img = document.createElement('img');
-      img.src = src;
+      // Create thumbnail using Loader
+      const img = Loader.createImage(src);
+      
       img.draggable = false;
       img.classList.toggle('active', i === this.currentIndex);
+      
       img.addEventListener('click', (e) => {
         if (this.hasDraggedThumbs) {
           e.preventDefault();
@@ -110,14 +119,13 @@ export default class Carousel {
         }
         this._goTo(i);
       });
+      
       this.thumbsContainer.appendChild(img);
     });
+    
     const activeThumb = this.thumbsContainer.querySelector('.active');
     if (activeThumb) {
-        activeThumb.scrollIntoView({ 
-            inline: 'nearest',
-            block: 'nearest' 
-        });
+        activeThumb.scrollIntoView({ inline: 'nearest', block: 'nearest' });
     }
   }
 

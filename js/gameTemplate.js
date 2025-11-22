@@ -1,4 +1,5 @@
 import Carousel from '/js/modules/carousel.js';
+import Loader from '/js/utils/loader.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
    
@@ -30,12 +31,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   document.title = game.title;
-  // Populate banner
+ 
   const bannerImg = document.querySelector('#game-banner');
-  bannerImg.src = game.banner; 
+  // Use the Loader to handle the src assignment and skeleton class
+  Loader.loadImage(bannerImg, game.banner);
   bannerImg.alt = game.title + " Banner";
-  bannerImg.draggable = false;
-  bannerImg.style.userSelect = 'none';
+  
   // Populate hero info
   document.querySelector('#game-title').textContent = game.title;
   document.querySelector('#release-date').textContent = game.releaseDate;
