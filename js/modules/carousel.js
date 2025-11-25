@@ -1,4 +1,4 @@
-import Loader from '/js/utils/Loader.js';
+import Loader from '/js/utils/loader.js';
 
 export default class Carousel {
   constructor(container, images = [], options = {}) {
