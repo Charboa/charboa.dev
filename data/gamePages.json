@@ -11,7 +11,7 @@
         "/resources/flappyscape-ss-3.png",
         "/resources/flappyscape-ss-4.png"   
       ],
-      "webglBuild": "/games/Type Hero",
+      "webglBuild": "/games/Flappyscape",
       "tags": ["Arcade", "Casual", "Parody", "Classic"],
       "releaseDate": "2022-05-10",
       "links": {

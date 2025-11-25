@@ -91,44 +91,61 @@ a {
   display: block;
 }
 
-/* Skeleton Loading Animation */
+/* --- SKELETON SYSTEM --- */
+
+/* 1. The Animation */
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
 
-/* generic skeleton block */
+/* 2. The Base Class */
 .skeleton {
-  background-color: #2a2a2a;
+  background: #2a2a2a;
   background-image: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
-  border-radius: 4px;
   
-  /* Critical: Forces element to have size even if empty */
-  display: inline-block; 
-  min-height: 1rem; 
+  /* Important: Makes text transparent so 'loading...' text doesn't show over the shimmer */
+  color: transparent !important; 
+  border-color: transparent !important;
+  user-select: none;
+  pointer-events: none; /* Prevent clicking while loading */
 }
 
-/* Variant: For Headings (Thicker, shorter width) */
-.skeleton-title {
-  height: 2rem; /* Match your h1 font-size */
-  width: 60%;   /* Don't fill whole line, looks more like a title */
+/* 3. Shape Variants */
+
+/* For headings/titles */
+.sk-title {
+  height: 2rem; /* Approx h1 size */
+  width: 60%;   /* Titles rarely fill full width */
+  border-radius: 4px;
   margin-bottom: 0.5rem;
 }
 
-/* Variant: For Paragraphs (Standard text height) */
-.skeleton-text {
+/* For paragraphs/descriptions */
+.sk-text {
   height: 1rem;
   width: 100%;
+  border-radius: 4px;
   margin-bottom: 0.5rem;
+  display: inline-block;
 }
 
-/* Variant: For Tags/Buttons */
-.skeleton-chip {
-  height: 2rem;
-  width: 4rem;
-  border-radius: 8px;
+/* For Images/Containers (MUST HAVE ASPECT RATIO) */
+.sk-rect {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* aspect-ratio must be set on the specific element ID or parent */
+}
+
+/* For Buttons/Tags */
+.sk-chip {
+  height: 2.5rem;
+  width: 6rem;
+  border-radius: 5px;
+  display: inline-block;
 }
 
 

@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="/css/pageLoader.css" />
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/pageLoader.css" />
     <link rel="stylesheet" href="/css/carousel.css">
     <link rel="stylesheet" href="/css/game.css">
-    <title>charboa.dev/play</title>   
+    
+    <title>charboa.dev/play</title>    
     <script type="module" src="/js/gameTemplate.js"></script>
 </head>
 <body>
   <div class="page">
 
-    <!-- Loader -->
-    <div id="pageLoader" class="page-loader">
-      <div class="spinner"></div>
-    </div>
-
-    <!-- Header -->
+     <!-- Loader -->
+        <div id="pageLoader" class="page-loader">
+            <div class="spinner"></div>
+        </div>
+  
     <header class="navigation">
       <div class="navbar">
         <a href="/" class="text-wrapper">charboa.dev</a>
@@ -34,89 +35,101 @@
       </div>
     </header>
 
-    <div class ="game-content">
-     
-      <!-- GAME NAVIGATION SECTION -->
-    <section class="game-navigation">
-      <a href="/play" class="link">← Back to games.</a>
-    </section>
+    <div class="game-content">
+      
+      <section class="game-navigation">
+        <a href="/play" class="link">← Back to games.</a>
+      </section>
 
-    <!-- HERO SECTION -->
-    <section class="game-hero">
-      <div class="hero-grid">
-        
-        <!-- Carousel -->
-        <div class="carousel-container">          
-          <div class="carousel-track-wrapper">
-             <!-- Arrows -->
-            <button class="carousel-arrow left">‹</button>
-            <button class="carousel-arrow right">›</button>
-            <div class="carousel-track" id="hero-track">
-              <!-- JS will populate images here -->
+      <!-- HERO SECTION -->
+      <section class="game-hero">
+        <div class="hero-grid">
+          
+          <!-- CAROUSEL CONTAINER -->
+          <div class="carousel-container">          
+            <!-- 
+               FIX 1: Inline style reserves space INSTANTLY before CSS loads.
+               Class 'skeleton-carousel' handles the Desktop override.
+            -->
+            <div class="carousel-track-wrapper skeleton skeleton-carousel" style="aspect-ratio: 16/9;"> 
+                <button class="carousel-arrow left">‹</button>
+                <button class="carousel-arrow right">›</button>
+                <div class="carousel-track" id="hero-track"></div>
+            </div>
+            <div class="carousel-thumbnails" id="screenshots"></div>
+          </div>
+
+          <!-- GAME INFO -->
+          <div class="game-info">
+            <!-- FIX 2: Inline style for banner -->
+            <img id="game-banner" class="skeleton skeleton-banner" src="" alt="" style="aspect-ratio: 16/9;">
+            
+            <h1 id="game-title" class="skeleton sk-title">&nbsp;</h1>
+            
+            <p class="release-date">
+              Released <span id="release-date" class="skeleton sk-text" style="width: 100px; display: inline-block;">&nbsp;</span>
+            </p>
+            
+            <div class="tags" id="tag-list">
+               <span class="skeleton sk-chip"></span>
+               <span class="skeleton sk-chip"></span>
+               <span class="skeleton sk-chip"></span>
+            </div>
+            
+            <p class="game-description" id="game-description">
+               <span class="skeleton sk-text"></span>
+               <span class="skeleton sk-text"></span>
+               <span class="skeleton sk-text" style="width: 80%"></span>
+            </p>
+            
+            <button id="play-button">▶ Play Now</button>
+          </div>
+
+        </div>
+      </section>
+      
+      <!-- WEBGL SECTION -->
+      <section class="webgl-section">
+        <div id="webgl-container">
+          <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
+          <div class="webgl-control-panel">
+            <span class="webgl-logo">charboa.dev</span>
+            <div class="webgl-controls">
+              <button id="unity-kill-btn" class="webgl-control-button">
+                <span>💀 Kill game</span> 
+              </button>
+              <button id="unity-fullscreen-btn" class="webgl-control-button">
+                <span>⛶ Fullscreen</span> 
+              </button>
             </div>
           </div>
-                
-          <!-- Thumbnails -->
-          <div class="carousel-thumbnails" id="screenshots"></div>
         </div>
+      </section>
 
-        <!-- Game Info -->
-        <div class="game-info">
-          <img id="game-banner" src="" alt="Game banner">
-          <h1 id="game-title"></h1>
-          <p class="release-date">
-            Released <span id="release-date"></span>
-          </p>
-          <div class="tags" id="tag-list"></div>
-          <p class="game-description" id="game-description"></p>
-          <button id="play-button">▶ Play Now</button>
+      <!-- ABOUT SECTION -->
+      <section class="game-about">
+        <p class="game-long-description" id="game-long-description">
+            <span class="skeleton sk-text"></span>
+            <span class="skeleton sk-text"></span>
+            <span class="skeleton sk-text"></span>
+            <span class="skeleton sk-text" style="width: 60%"></span>
+        </p>  
+        <div class="game-links">
+          <a id="github-link" target="_blank" class="link">GitHub</a>
+          <a id="steam-link" target="_blank" class="link">Steam</a>
+          <a id="itch-link" target="_blank" class="link">Itch.io</a>
         </div>
-
-      </div>
-    </section>
-    
-     <!-- WEBGL SECTION -->
-    <section class="webgl-section">
-      <div id="webgl-container">
-        <iframe id="webgl-frame" src="" frameborder="0" allowfullscreen></iframe>
-        <div class ="webgl-control-panel">
-          <span class="webgl-logo">charboa.dev</span>
-          <div class="webgl-controls">
-            <button id="unity-kill-btn" class="webgl-control-button">
-              <span>💀 Kill game</span> 
-            </button>
-            <button id="unity-fullscreen-btn" class="webgl-control-button">
-            <span>⛶ Fullscreen</span> 
-          </button>
-        </div>
-      </div>
-      </div>
-      
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="game-about">
-      <p class = "game-long-description" id="game-long-description"></p>  
-      <div class="game-links">
-        <a id="github-link" target="_blank" class="link">GitHub</a>
-        <a id="steam-link" target="_blank" class="link">Steam</a>
-        <a id="itch-link" target="_blank" class="link">Itch.io</a>
-      </div>
-    </section>
+      </section>
   
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
       <span class="span">&copy; 2025 Charboa. All rights reserved.</span>
     </footer>
 
   </div>
 
-  <!-- Scripts -->
-  <script src="/js/pageLoader.js"></script>
+  <script src="/js/pageLoader.js"></script>   
   <script type="module" src="/js/modules/carousel.js"></script>
 </body>
-
 </html>
-

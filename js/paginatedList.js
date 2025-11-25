@@ -1,54 +1,21 @@
-// paginatedList.js
 document.addEventListener("DOMContentLoaded", () => {
     const scripts = document.querySelectorAll('script[src*="paginatedList.js"]');
 
     scripts.forEach(script => {
-        // Read attributes from the script tag
+        // --- 1. CONFIGURATION ---
         const dataUrl = script.getAttribute("data-json");
         const containerId = script.getAttribute("data-container") || "paginatedList-list";
         const paginationId = script.getAttribute("data-pagination") || "paginatedList-pagination";
         const searchId = script.getAttribute("data-search") || "paginatedList-search";
         const openInNewTab = script.getAttribute("data-newtab") === "true";
-        const itemsPerPage = parseInt(script.getAttribute("data-items-per-page")) || "6";
+        const itemsPerPage = parseInt(script.getAttribute("data-items-per-page")) || 6;
         const showDescription = script.getAttribute("data-show-description") !== "false";
-
+        
+        // RESTORED: Dimensions logic
         const elementHeightAttr = script.getAttribute("data-element-height");
         const elementMargin = script.getAttribute("data-element-margin") || "0px";
 
-        // Ensure container exists or create it
-        let container = document.getElementById(containerId);
-        if (!container) {
-            container = document.createElement("div");
-            container.id = containerId;
-            container.classList.add("paginatedList-container");
-            script.parentNode.insertBefore(container, script);
-        }
-
-        // Ensure pagination exists or create it
-        let pagination = document.getElementById(paginationId);
-        if (!pagination) {
-            pagination = document.createElement("div");
-            pagination.id = paginationId;
-            pagination.classList.add("paginatedList-pagination");
-            container.insertAdjacentElement("afterend", pagination);
-        }
-
-        // Ensure search input exists or create it
-        let searchInput = document.getElementById(searchId);
-        if (!searchInput) {
-            searchInput = document.createElement("input");
-            searchInput.id = searchId;
-            searchInput.classList.add("paginatedList-header");
-            searchInput.classList.add("paginatedList-search");
-            searchInput.type = "text";
-            searchInput.placeholder = "Search...";
-            container.insertAdjacentElement("beforebegin", searchInput);
-        }
-
-        let items = [];
-        let filteredItems = [];
-        let currentPage = 1;
-
+        // RESTORED: Helper to parse px
         function cssToPx(value) {
             const test = document.createElement("div");
             test.style.position = "absolute";
@@ -60,7 +27,82 @@ document.addEventListener("DOMContentLoaded", () => {
             return px;
         }
 
-        // Fetch JSON data
+        // RESTORED: Height Calculation Logic
+        function getCardHeight(containerEl) {
+            const containerHeight = containerEl.clientHeight || window.innerHeight;
+            const marginPx = cssToPx(elementMargin);
+            const totalGaps = Math.max(0, itemsPerPage - 1);
+            const totalVerticalMargins = marginPx * totalGaps;
+            const availableHeight = Math.max(0, containerHeight - totalVerticalMargins);
+            const computedHeightPx = availableHeight / itemsPerPage;
+            
+            return elementHeightAttr && elementHeightAttr !== "auto"
+                ? elementHeightAttr
+                : `${computedHeightPx}px`;
+        }
+
+        // Helper: Ensure DOM elements exist
+        const ensureElement = (id, tag, classes, insertFn) => {
+            let el = document.getElementById(id);
+            if (!el) {
+                el = document.createElement(tag);
+                el.id = id;
+                classes.forEach(c => el.classList.add(c));
+                insertFn(el);
+            }
+            return el;
+        };
+
+        // --- 2. BUILD STRUCTURE ---
+        const searchInput = ensureElement(searchId, "input", ["paginatedList-header", "paginatedList-search"], (el) => {
+            el.type = "text";
+            el.placeholder = "Search...";
+            script.parentNode.insertBefore(el, script);
+        });
+
+        const container = ensureElement(containerId, "div", ["paginatedList-container"], (el) => {
+            script.parentNode.insertBefore(el, script);
+        });
+
+        const pagination = ensureElement(paginationId, "div", ["paginatedList-pagination"], (el) => {
+            container.insertAdjacentElement("afterend", el);
+        });
+
+        // --- 3. RENDER SKELETONS (Immediate Feedback) ---
+        function renderSkeletons() {
+            container.innerHTML = "";
+            // Calculate height immediately for skeletons
+            const cardHeight = getCardHeight(container);
+
+            for (let i = 0; i < itemsPerPage; i++) {
+                const card = document.createElement("div");
+                card.classList.add("paginatedList-element", "skeleton");
+                
+                // APPLY DYNAMIC HEIGHT & MARGIN TO SKELETONS
+                card.style.height = cardHeight;
+                if (i < itemsPerPage - 1) card.style.marginBottom = elementMargin;
+
+                card.innerHTML = `
+                    <div class="paginatedList-element-image skeleton"></div>
+                    <div class="paginatedList-element-content">
+                        <h2 class="skeleton">&nbsp;</h2>
+                        <p class="skeleton">&nbsp;</p>
+                        <p class="skeleton" style="width: 60%">&nbsp;</p>
+                        <span class="skeleton">&nbsp;</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        // Run immediately
+        renderSkeletons();
+
+        // --- 4. FETCH & HYDRATE ---
+        let items = [];
+        let filteredItems = [];
+        let currentPage = 1;
+
         fetch(dataUrl)
             .then(res => res.json())
             .then(data => {
@@ -70,44 +112,34 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => {
                 console.error("PaginatedList: Failed to load data:", error);
-                container.innerHTML = "<p>Failed to load content.</p>";
+                container.innerHTML = "<p style='text-align:center; color:var(--color-muted)'>Failed to load content.</p>";
             });
 
-        // Render current page
+        // --- 5. RENDER REAL CONTENT ---
         function renderPage(page) {
+            container.innerHTML = ""; 
             
-            container.innerHTML = "";
+            // Recalculate height in case window resized
+            const cardHeight = getCardHeight(container);
 
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
             const visible = filteredItems.slice(start, end);
 
-            const containerHeight = container.clientHeight || window.innerHeight;
-            const marginPx = cssToPx(elementMargin);
-            const totalGaps = Math.max(0, itemsPerPage - 1);
-            const totalVerticalMargins = marginPx * totalGaps;
-            const availableHeight = Math.max(0, containerHeight - totalVerticalMargins);
-            const computedHeightPx = availableHeight / itemsPerPage;
-            const cardHeight = elementHeightAttr && elementHeightAttr !== "auto"
-                ? elementHeightAttr
-                : `${computedHeightPx}px`;
-
             visible.forEach((item, index) => {
                 const card = document.createElement("a");
-                
                 card.classList.add("paginatedList-element");
                 card.href = item.link;
-
+                
                 if (openInNewTab) {
                     card.target = "_blank";
                     card.rel = "noopener noreferrer";
                 }
 
+                // APPLY DYNAMIC HEIGHT & MARGIN
                 card.style.height = cardHeight;
                 if (index < visible.length - 1) {
-                    card.style.margin = `0 0 ${elementMargin} 0`;
-                } else {
-                    card.style.margin = `0 0 0 0`;
+                    card.style.marginBottom = elementMargin;
                 }
 
                 card.innerHTML = `
@@ -125,19 +157,20 @@ document.addEventListener("DOMContentLoaded", () => {
             document.dispatchEvent(new Event("cardsLoaded"));
         }
 
-        // Pagination controls
         function updatePaginationControls() {
             pagination.innerHTML = "";
             pagination.classList.add("paginatedList-pagination-controls");
 
-            const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+            if (filteredItems.length <= itemsPerPage) return; 
+
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
             const prevBtn = document.createElement("button");
             prevBtn.textContent = "Previous";
             prevBtn.disabled = currentPage === 1;
             prevBtn.onclick = () => changePage(currentPage - 1);
 
-            const pageInfo = document.createElement("span");           
+            const pageInfo = document.createElement("span");
             pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
 
             const nextBtn = document.createElement("button");
@@ -148,14 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
             pagination.append(prevBtn, pageInfo, nextBtn);
         }
 
-        // Change page
         function changePage(newPage) {
             currentPage = newPage;
             renderPage(currentPage);
-            //window.scrollTo({ top: 0, behavior: "smooth" });
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
-        // Search handler
         searchInput.addEventListener("input", () => {
             const query = searchInput.value.toLowerCase().trim();
             filteredItems = query
@@ -167,7 +198,5 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPage = 1;
             renderPage(currentPage);
         });
-
-        console.log(`PaginatedList initialized for ${dataUrl}`);
     });
 });

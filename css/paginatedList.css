@@ -1,18 +1,21 @@
+/* --- LAYOUT CONTAINERS --- */
 .paginatedList-section {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 50px 50px;
   min-height: 100vh;
+  width: 75%;
+  align-items: center;
 }
 
 .paginatedList-container {
   min-height: 100vh;
   display: block;
-  justify-content: center; 
+  width: 100%;
 }
 
+/* --- CARD STYLES --- */
 .paginatedList-element {
   display: flex;
   flex-direction: row;
@@ -27,12 +30,16 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .paginatedList-element:hover  {
   box-shadow: 0 0 24px var(--color-primary);
 }
 
+/* Hover Shine Effect */
 .paginatedList-element::before {
   content: "";
   position: absolute;
@@ -44,7 +51,7 @@
   border-radius: inherit;
   background: radial-gradient(circle at var(--shine-x, 50%) var(--shine-y, 50%), rgb(134, 255, 136) 0%, transparent 100%);
   opacity: 0;
-  transition: opacity 0,05s ease;
+  transition: opacity 0.05s ease;
   z-index: 1;
 }
 
@@ -60,15 +67,20 @@
   user-select: none;
   pointer-events: none;
   -webkit-user-drag: none;
+  flex-shrink: 0; 
 }
 
+/* --- CONTENT STYLES --- */
 .paginatedList-element-content {
   flex: 1;
   text-align: end; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20px;
 }
 
 .paginatedList-element-content h2 {
-  text-align: end;
   font-size: 24px;
   text-overflow: ellipsis;
   margin: 0px 0px 20px 0px;
@@ -76,7 +88,6 @@
 }
 
 .paginatedList-element-content p {
-  text-align: end;
   font-size: 16px;
   text-overflow: ellipsis;
   margin: 0px 0px 20px 50px;
@@ -84,95 +95,109 @@
 }
 
 .paginatedList-element-content span {
-  text-align: end;
   font-size: 16px;
   text-decoration: underline;
-  text-overflow: ellipsis;
-  margin: 0px 0px 0px 0px;
   color: var(--color-secondary);
 }
 
+/* --- CONTROLS --- */
 .paginatedList-pagination-controls {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin : 20px 0px 20px 0px;  
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 20px 0px;  
+}
 
-  .paginatedList-pagination-controls button {
-    display: flex;
-    flex-direction: column;
-    background: var(--color-accent);
-    color: var(--color-text);
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
+.paginatedList-pagination-controls button {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
 
-  .paginatedList-pagination-controls button:disabled {
-    background: var(--color-surface);
-    cursor: not-allowed;
-  }
+.paginatedList-pagination-controls button:disabled {
+  background: var(--color-surface);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
 
-  .paginatedList-pagination-controls span {
-    color: var(--color-muted);
-    font-size: 0.9rem;
-  }
-
-  .paginatedList-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin : 0px 0px 20px 0px;  
-    color: aliceblue;
-  }
-
-  #paginatedList-search {
-    width: min(90%, 400px);
-    padding: 0.6rem 1rem;
-
-    border: 1px solid var(--color-accent, --color-primary);
-    border-radius: 8px;
-    background: var(--color-surface, --color-surface);
-    color: var(--color-muted, --color-text);
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  #paginatedList-search:focus {
-    outline: none;
-    border-color: var(--color-primary, --color-primary);
-  }
-
-  /* Responsive styles */
-@media screen and (max-width: 768px) {
-
-  .paginatedList-element-content h2 {
-  text-align: end;
+.paginatedList-pagination-controls span {
+  color: var(--color-muted);
   font-size: 0.9rem;
-  text-overflow: clip;
-  margin: 0px 0px 0px 20px;
-  color: var(--color-primary);
 }
 
-.paginatedList-element-content p {
-  font-size: 0rem;
+.paginatedList-header {
+  display: flex;
+  justify-content: center;
+  margin: 0px 0px 20px 0px;  
 }
 
-.paginatedList-element-content span {
-  text-align: end;
-  font-size: px;
-  text-decoration: underline;
-  text-overflow: ellipsis;
-  margin: 20px 0px 0px 0px;
-  color: var(--color-secondary);
+#paginatedList-search {
+  width: min(90%, 400px);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
 }
-  
+
+#paginatedList-search:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
+/* =========================== */
+/* --- SKELETON OVERRIDES --- */
+/* =========================== */
+
+/* Base Skeleton Card */
+.paginatedList-element.skeleton {
+  pointer-events: none;
+  box-shadow: none;
+  cursor: default;
+  width: 100%;
+}
+
+/* Image Placeholder */
+.paginatedList-element-image.skeleton {
+  background: #2a2a2a;
+  background-image: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Content Placeholders */
+.paginatedList-element-content h2.skeleton,
+.paginatedList-element-content p.skeleton,
+.paginatedList-element-content span.skeleton {
+  background: #2a2a2a;
+  background-image: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  color: transparent; 
+}
+
+.paginatedList-element-content h2.skeleton { width: 50%; height: 24px; margin-left: auto; }
+.paginatedList-element-content p.skeleton { width: 90%; height: 16px; margin-left: auto; margin-bottom: 10px;}
+.paginatedList-element-content span.skeleton { width: 30%; height: 16px; margin-left: auto; display: block; }
 
 
+/* --- RESPONSIVE --- */
+@media screen and (max-width: 768px) {
+  .paginatedList-element-content h2 {
+    font-size: 1.2rem;
+    margin: 0px 0px 10px 0px;
+  }
+  .paginatedList-element-content p {
+    font-size: 0.9rem;
+    margin-left: 0;
+  }
+}

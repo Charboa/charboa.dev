@@ -1,122 +1,74 @@
 import Carousel from '/js/modules/carousel.js';
-import Loader from '/js/utils/loader.js';
+import UI from '/js/utils/UI.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-   
-  // Get game ID from URL
-  const params = new URLSearchParams(window.location.search);
-  const gameId = params.get('id');
-
-  if (!gameId) {
-    document.body.innerHTML = "<p>Game not found.</p>";
-    return;
-  }
-
-  // Fetch game data
-  let games;
-  try {
-    const response = await fetch('/data/gamePages.json');
-    if (!response.ok) throw new Error("Failed to fetch JSON");
-    games = await response.json();
-  } catch (err) {
-    console.error(err);
-    document.body.innerHTML = "<p>Failed to load game data.</p>";
-    return;
-  }
-
-  const game = games.find(g => g.id === gameId);
-  if (!game) {
-    document.body.innerHTML = "<p>Game not found.</p>";
-    return;
-  }
-
-  document.title = game.title;
- 
-  const bannerImg = document.querySelector('#game-banner');
-  // Use the Loader to handle the src assignment and skeleton class
-  Loader.loadImage(bannerImg, game.banner);
-  bannerImg.alt = game.title + " Banner";
   
-  // Populate hero info
-  document.querySelector('#game-title').textContent = game.title;
-  document.querySelector('#release-date').textContent = game.releaseDate;
-  document.querySelector('#game-description').textContent = game.shortDescription;
-  document.querySelector('#game-long-description').textContent = game.longDescription;
+  // 1. Get ID
+  const gameId = new URLSearchParams(window.location.search).get('id');
+  if (!gameId) { document.body.innerHTML = "<p>Game not found.</p>"; return; }
 
-  // Populate tags
-  const tagList = document.querySelector('#tag-list');
-  tagList.innerHTML = '';
-  if (game.tags) {
-    game.tags.forEach(tag => {
-      const span = document.createElement('span');
-      span.textContent = tag;
-      tagList.appendChild(span);
-    });
-  }
+  // 2. Fetch Data
+  let game;
+  try {
+    const res = await fetch('/data/gamePages.json');
+    if (!res.ok) throw new Error("Failed");
+    const games = await res.json();
+    game = games.find(g => g.id === gameId);
+  } catch (err) { console.error(err); return; }
 
-  // Create screenshot carousel
-  const carousel = new Carousel('.carousel-container', game.screenshots || [], {
-    autoplay: false,
-    autoplayInterval: 4500,
-    startIndex: 0,
+  if (!game) { document.body.innerHTML = "<p>Game not found.</p>"; return; }
+
+  // 3. Hydrate UI (Replace Skeletons)
+  document.title = game.title;
+  
+  UI.fill('#game-title', game.title);
+  UI.fill('#release-date', game.releaseDate);
+  UI.fill('#game-description', game.shortDescription);
+  UI.fill('#game-long-description', game.longDescription);
+  
+  UI.fillImage('#game-banner', game.banner);
+
+  // 4. Populate List
+  UI.fillList('#tag-list', game.tags, (tagText) => {
+    const span = document.createElement('span');
+    span.textContent = tagText;
+    return span;
   });
 
-  // store it somewhere if you need to destroy later:
+  // 5. Initialize Carousel
+  UI.revealCarousel(); // Removes skeleton from wrapper
+  const carousel = new Carousel('.carousel-container', game.screenshots || []);
   window._currentCarousel = carousel;
 
-  // Populate links
-  const links = game.links || {};
-  const githubEl = document.querySelector('#github-link');
-  const steamEl = document.querySelector('#steam-link');
-  const itchEl = document.querySelector('#itch-link');
+  // 6. Handle Links
+  const setLink = (id, url) => {
+    const el = document.querySelector(id);
+    el.style.display = url ? 'inline-block' : 'none';
+    el.href = url || '#';
+  };
+  setLink('#github-link', game.links?.github);
+  setLink('#steam-link', game.links?.steam);
+  setLink('#itch-link', game.links?.itch);
 
-  githubEl.style.display = links.github ? 'inline-block' : 'none';
-  githubEl.href = links.github || '#';
-
-  steamEl.style.display = links.steam ? 'inline-block' : 'none';
-  steamEl.href = links.steam || '#';
-
-  itchEl.style.display = links.itch ? 'inline-block' : 'none';
-  itchEl.href = links.itch || '#';
-
-  // WebGL frame toggle
+  // 7. WebGL Logic
   const webglContainer = document.querySelector('#webgl-container');
   const webglFrame = document.querySelector('#webgl-frame');
   document.querySelector('#play-button').addEventListener('click', () => {
-
     webglFrame.src = `${game.webglBuild}/index.html`;     
     webglContainer.scrollIntoView({ behavior: 'smooth' });
-     
   });
 });
 
-// Fullscreen button
+// Fullscreen Logic
 window.addEventListener('load', () => {
-  const fullscreenBtn = document.getElementById('unity-fullscreen-btn');
-  
-  // Make sure this matches your element ID (e.g. 'unity-canvas' or your iframe ID)
-  const gameElement = document.getElementById('webgl-frame'); 
+  const btn = document.getElementById('unity-fullscreen-btn');
+  const frame = document.getElementById('webgl-frame'); 
 
-  if (!fullscreenBtn || !gameElement) {
-    console.warn('Fullscreen script error: Button or Game Element not found.');
-    return;
-  }
+  if (!btn || !frame) return;
 
-  fullscreenBtn.addEventListener('click', () => {
-    // 1. Request Fullscreen
-    if (gameElement.requestFullscreen) {
-      gameElement.requestFullscreen();
-    } else if (gameElement.webkitRequestFullscreen) { /* Safari/Chrome */
-      gameElement.webkitRequestFullscreen();
-    } else if (gameElement.msRequestFullscreen) { /* IE11 */
-      gameElement.msRequestFullscreen();
-    }
-
-    setTimeout(() => {
-      gameElement.focus();
-    }, 100);
+  btn.addEventListener('click', () => {
+    if (frame.requestFullscreen) frame.requestFullscreen();
+    else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+    setTimeout(() => frame.focus(), 100);
   });
 });
-
-
-
