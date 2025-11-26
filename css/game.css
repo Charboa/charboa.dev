@@ -118,7 +118,8 @@ body.is-fullscreen #unity-fullscreen-btn { display: none; }
 /* =========================== */
 
 @media (max-width: 1200px) {
-  .game-content, .game-hero { width: 100%; }
+
+  .game-content, .game-hero { width: 100%; padding-left: 2vw; padding-right: 2vw;}
   
   .hero-grid {
     display: flex;
@@ -130,15 +131,18 @@ body.is-fullscreen #unity-fullscreen-btn { display: none; }
 
   .game-info { display: contents; }
 
-  #game-banner { order: 1; width: 100%; border-radius: 0; }
+  #game-banner { order: 1; width: 100%; border-radius: 0;}
 
   .hero-grid .carousel-container {
     order: 2;
     width: 100%;
-    padding: 5vw;
+    margin-top: 2rem;
     box-sizing: border-box;
   }
-  .hero-grid .carousel-arrow { font-size: 8vw; }
+
+  #webgl-container{
+    width: 100%;
+  }
 
   /* MOBILE SKELETONS: Respect Inline Styles */
   .skeleton-carousel {
