@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/pageLoader.css" />
-    <title>charboa.dev</title> 
+    <title>charboa.dev</title>
 </head>
+
 <body>
     <div class="page">
 
@@ -19,31 +21,33 @@
         <!-- Header -->
         <header class="navigation">
             <div class="navbar">
-              <a href="/" class="text-wrapper">charboa.dev</a>
-              <nav class="nav-container">
-                <ul class="nav-links">
-                  <li><a href="/" class="active">home</a></li>
-                  <li><a href="/play">play</a></li>
-                  <li><a href="/code">code</a></li>
-                  <li><a href="/contact">contact</a></li>
-                </ul>                
-              </nav>
+                <a href="/" class="text-wrapper">charboa.dev</a>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+                <nav class="nav-container">
+                    <ul class="nav-links">
+                        <li><a href="/" class="active">home</a></li>
+                        <li><a href="/play">play</a></li>
+                        <li><a href="/code">code</a></li>
+                        <li><a href="/contact">contact</a></li>
+                    </ul>
+                </nav>
             </div>
-          </header>
-        
+        </header>
+
         <!-- Welcome Content -->
-        <main class="main-content">       
+        <main class="main-content">
             <section class="hero">
                 <div class="video-container">
-                    <iframe
-                        id="latestVideo"
-                        frameborder="0"
-                        allow="autoplay; encrypted-media"
-                        allowfullscreen
-                    ></iframe>
+                    <iframe id="latestVideo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                 </div>
                 <p class="hero-title">
-                    <span class="span">check out my<br/>latest</span>
+                    <span class="span">check out my<br />latest</span>
                     <span class="text-wrapper-4">video</span>
                 </p>
             </section>
@@ -53,13 +57,16 @@
                     <span class="span">Find me here:</span>
                 </p>
                 <div class="socials-buttons">
-                    <a href="https://github.com/charboa" target="_blank" rel="noopener noreferrer" class="socials-button github">
+                    <a href="https://github.com/charboa" target="_blank" rel="noopener noreferrer"
+                        class="socials-button github">
                         <span class="text-wrapper-2">github</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/charboa" target="_blank" rel="noopener noreferrer" class="socials-button linkedin">
+                    <a href="https://www.linkedin.com/in/charboa" target="_blank" rel="noopener noreferrer"
+                        class="socials-button linkedin">
                         <span class="text-wrapper-2">linkedin</span>
                     </a>
-                    <a href="https://www.youtube.com/@charboa" target="_blank" rel="noopener noreferrer" class="socials-button youtube">
+                    <a href="https://www.youtube.com/@charboa" target="_blank" rel="noopener noreferrer"
+                        class="socials-button youtube">
                         <span class="text-wrapper-2">youtube</span>
                     </a>
                 </div>
@@ -70,11 +77,13 @@
         <footer class="footer">
             <p class="span">&copy; 2025 Charboa. All rights reserved.</p>
         </footer>
-        
+
     </div>
-       
+
     <script src="/js/pageLoader.js"></script>
+    <script src="/js/hamburger.js"></script>
     <script type="module" src="/js/modules/youtubeLastVideo.js"></script>
-    
+
 </body>
+
 </html>

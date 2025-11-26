@@ -34,7 +34,7 @@ html, body {
     width: 100%;
     min-height: 100vh;
     overflow: visible;
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-items: center;
     text-align: center;
