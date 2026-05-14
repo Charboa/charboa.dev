@@ -1,122 +1,30 @@
 [
   {
-    "title": "test",
-    "description": "An ",
+    "title": "Charboa's RAPID HFSM",
+    "description": "A lightweight and comprehensive Hierarchical Finite State Machine creator. Built for fast iteration and production-ready state machines.",
     "image": "/resources/logo.png",
     "link": "/code"
   },
+
   {
-    "title": "Portfolio Website",
-    "description": "This personal portfolio was built from a Figma design using pure HTML, CSS, and JavaScript.",
+    "title": "Charboa's O.B.A.M.A",
+    "description": "Object Based Audio Manager Advanced is a complete audio management solution that utilizes gameobjects for deterministic and realistic audio placement. O.B.A.M.A's powerful editor allows you to trim, combine, tweak and even bake audios so you will never have to leave the Unity Editor for designing audio again.",
     "image": "/resources/logo.png",
     "link": "/code"
   },
+
   {
-    "title": "Space Shooter",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
+    "title": "Charboa's Utils",
+    "description": "",
     "image": "/resources/logo.png",
     "link": "/code"
   },
+
   {
-    "title": "RNGI (Random Number Generator Interface)",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "HFSM for Unity",
-    "description": "An inheritance based hierarchical finite state machine for Unity.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Portfolio Website",
-    "description": "This personal portfolio was built from a Figma design using pure HTML, CSS, and JavaScript.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Space Shooter",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "RNGI (Random Number Generator Interface)",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "HFSM for Unity",
-    "description": "An inheritance based hierarchical finite state machine for Unity.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Portfolio Website",
-    "description": "This personal portfolio was built from a Figma design using pure HTML, CSS, and JavaScript.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Space Shooter",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "RNGI (Random Number Generator Interface)",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "HFSM for Unity",
-    "description": "An inheritance based hierarchical finite state machine for Unity.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Portfolio Website",
-    "description": "This personal portfolio was built from a Figma design using pure HTML, CSS, and JavaScript.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Space Shooter",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "RNGI (Random Number Generator Interface)",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "HFSM for Unity",
-    "description": "An inheritance based hierarchical finite state machine for Unity.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Portfolio Website",
-    "description": "This personal portfolio was built from a Figma design using pure HTML, CSS, and JavaScript.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "Space Shooter",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
-    "image": "/resources/logo.png",
-    "link": "/code"
-  },
-  {
-    "title": "RNGI (Random Number Generator Interface)",
-    "description": "A fast-paced WebGL game made with Unity featuring enemy AI and score tracking.",
+    "title": "Charboa's Radial Menu Designer",
+    "description": "",
     "image": "/resources/logo.png",
     "link": "/code"
   }
+  
 ]

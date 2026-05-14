@@ -10,5 +10,11 @@
     "description": "Master your keyboard and become the type hero!",
     "image": "/resources/type hero logo.png",
     "link": ""
+  },
+  {
+    "title": "Super Mario 64",
+    "description": "This is for emulator js test purposes only.",
+    "image": "/resources/type hero logo.png",
+    "link": "/play/super64index.html"
   }
 ]
